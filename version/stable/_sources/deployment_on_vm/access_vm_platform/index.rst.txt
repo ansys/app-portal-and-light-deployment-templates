@@ -1,0 +1,26 @@
+.. _access-vm-platform:
+
+Enable user access to the network
+##################################
+
+Once you have completed all the :ref:`required changes to the hosts file <vm-hosts-file-mods>`, the platform is accessible on the virtual network but is not yet accessible to users. You need to provide registered users with platform access, both to the Ansys App Portal and to the individual solution apps deployed to it. This requires updates to the ``hosts`` file on the user's local machine.
+
+Follow these instructions to make and verify the required changes in the ``hosts`` file on the user's local machine.
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: Enable user access to the portal
+      :link-type: doc
+      :link: access_vm_platform_portal
+
+   .. grid-item-card:: Enable user access to a deployed app
+      :link-type: doc
+      :link: access_vm_platform_app
+
+..  toctree::
+    :hidden:
+    :maxdepth: 3
+
+    access_vm_platform_portal
+    access_vm_platform_app
