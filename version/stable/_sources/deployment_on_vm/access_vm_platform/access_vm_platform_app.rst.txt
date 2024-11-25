@@ -1,0 +1,91 @@
+.. _access-vm-platform-app:
+
+Enable user access to a deployed app
+#####################################
+
+.. attention::
+  This section is applicable only for solution apps that were created using the **optiSLang 2024 R2 release**. 
+  Solution apps created using the **optiSLang 2024 R2 SP2 service pack** can be directly accessed on the Ansys App Portal without any changes in the ``hosts`` file.
+
+
+Follow these instructions to make and verify the required changes.
+
+Gather required values
+=======================
+
+The following values are required to update entries in the ``hosts`` file.
+
+.. list-table::
+   :stub-columns: 1
+   :header-rows: 1
+   :widths: 10 90
+
+   * - Value
+     - Description
+   * - ``<vm_ip>``
+     - IP address on the VM.
+   * - ``<vm_hostname>``
+     - Hostname of the VM.
+   * - ``<domain_suffix>``
+     - Full domain suffix of the VM.
+   * - ``<name_of_the_solution>``
+     - Name of the solution app deployed to the VM.
+
+.. note::
+  These values are known to the IT administrator who deploys Ansys App Portal and Deployment Templates platform on the VM.
+
+.. tip::
+    On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+
+Update app entries
+====================
+Add the following entry using the format shown here:
+
+.. code-block::
+  :caption: hosts
+
+  <vm_ip> <name_of_the_solution>.<vm_hostname>.<domain_suffix>
+
+
+Verify app entries
+====================
+
+Once added, the entry should look similar to the app entries shown here:
+
+.. image:: /_static/documenting/local_solution_hosts.png
+
+
+Verify app access
+==================
+Once all changes are included in hosts file, to access a portal, in browser type URL: ``portal.<vm_hostname>.<domain_suffix>:8011``.
+Once the entries are updated in the ``hosts`` file, the user should be able to access the deployed app as follows:
+
+#. Open the Ansys App Portal in a browser at the following URL:
+
+   .. code-block::
+
+     portal.<vm_hostname>.<domain_suffix>:8011
+
+   .. note::
+    In this example, ``8011`` is the default value of a ``<TR_PORT>`` set on the VM where the portal is running. Check with your administrator if different port is used.
+
+#. Log in with portal user credentials.
+
+   The portal opens to its **Home** page in a new browser tab.
+
+#. Click :guilabel:`Explore applications`.
+
+   The **Applications** dashboard opens, showing the apps to which the user has access.
+
+#. Click the card of the app.
+
+   If access is enabled, the app opens to its **Projects** dashboard. The user should be able to add a new project for the app.
+
+
+
+
+
+
+
+
