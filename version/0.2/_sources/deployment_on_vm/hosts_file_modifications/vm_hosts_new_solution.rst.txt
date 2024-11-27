@@ -1,0 +1,65 @@
+.. _vm-app-hosts:
+
+Verify hosts entries for an app deployment
+###########################################
+
+When a :ref:`new solution app is added <ref-testing-add-app>` to the Ansys App Portal for a network deployment, the platform automatically updates the ``hosts`` file of the VM with the entries needed to make the deployed app accessible over the network.
+
+Follow these instructions to verify the entries that were updated for the app deployment.
+
+.. attention::
+
+    This section is applicable only when the platform is deployed with the **optiSLang 2024 R2 release**. When the platform is deployed with the optiSLang **2024 R2 SP2 service pack**, individual entries for solutions are not added to the ``hosts`` file. Instead, the ``hosts`` file has entries referencing the solution subdomain, which is defined as ``solutions.<hostname>.<domain_suffix>``.
+
+
+Gather required values
+======================
+
+The following values are required to verify updates to entries in the ``hosts`` file.
+
+.. list-table::
+   :stub-columns: 1
+   :header-rows: 1
+   :widths: 10 90
+
+   * - Value
+     - Description
+   * - ``<hostname>``
+     - Host name of the VM identified in the :ref:`gather-info-env` section of :ref:`env`.
+   * - ``<domain_suffix>``
+     - Full domain suffix of the VM identified in the :ref:`gather-info-env` section  of :ref:`env`.
+   * - ``<ip>``
+     - |
+       | IP address on the VM.
+
+
+       To retrieve this value, run this command on the host machine:
+
+       .. tabs::
+
+         .. code-tab::
+           :caption: CMD
+
+           ipconfig
+
+
+.. tip::
+    On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+
+Verify app deployment entries
+==============================
+
+Verify that entries for the solution app deployment have the following format:
+
+.. code-block::
+  :caption: hosts
+
+  <ip> <name_of_the_solution>.<hostname>.<domain_suffix>
+
+
+Once a new solution app is deployed, the app address entries in the ``hosts`` file should look like this:
+
+.. image:: /_static/documenting/vm_solution_hosts.png
+  :width: 60%
+

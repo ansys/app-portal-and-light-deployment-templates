@@ -1,0 +1,14 @@
+.. _ref_release_notes:
+
+Release Notes
+##############
+
+What's new in Ansys App Portal and Deployment Templates |version|
+=================================================================
+
+Ansys App Portal and Deployment Templates |version| is a feature release that includes the following enhancements:
+
+* Enhancements to the ``Deploy-Platform.ps1`` script to improve the local platform deployment experience.
+* Added ``Stop-Platform.ps1`` script to stop the platform once deployed.
+* Added ``Start-Platform.ps1`` script to start the platform if it has been stopped.
+* Documentation improvements, including instructions for uninstalling the platform.
