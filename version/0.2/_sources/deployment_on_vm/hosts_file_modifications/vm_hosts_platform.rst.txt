@@ -1,0 +1,56 @@
+.. _vm-platform-hosts:
+
+Update hosts entries for the platform
+#######################################
+
+Gather required values
+======================
+The following values are required to update the ``hosts`` file.
+
+.. list-table::
+   :stub-columns: 1
+   :header-rows: 1
+   :widths: 10 90
+
+   * - Value
+     - Description
+   * - ``<hostname>``
+     - Host name of the VM identified in the :ref:`gather-info-env` section of :ref:`env`.
+   * - ``<domain_suffix>``
+     - Full domain suffix of the VM identified in the :ref:`gather-info-env` section  of :ref:`env`.
+   * - ``<ip>``
+     - |
+       | IP address on the VM.
+
+
+       To retrieve this value, run this command on the host machine:
+
+       .. tabs::
+
+         .. code-tab::
+           :caption: CMD
+
+           ipconfig
+
+.. tip::
+    On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+
+Update platform entry
+=====================
+
+In the ``hosts`` file on the VM, add an entry for the host name with the full domain suffix:
+
+.. code-block::
+  :caption: hosts
+
+  <ip> <hostname>.<domain_suffix>
+
+
+Verify platform entries
+========================
+
+Once updated, platform entries in the ``hosts`` file should look like this:
+
+.. image:: /_static/documenting/local_hosts.png
+  :width: 50%
