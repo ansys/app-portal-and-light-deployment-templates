@@ -1,0 +1,4 @@
+User-agent: *
+
+
+Sitemap: https://external.light.deployments.docs.solution.ansys.com/sitemap.xml
