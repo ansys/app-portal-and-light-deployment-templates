@@ -1,0 +1,8 @@
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   getting_started/index
+   user_guide/index
+   deployment_on_vm/index
+   release_notes/index
