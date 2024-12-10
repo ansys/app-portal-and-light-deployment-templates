@@ -1,0 +1,95 @@
+.. _configure_env:
+
+Configure platform deployment
+#############################
+
+.. note::
+
+  **This section is optional** and only required if you need to change the configuration of the platform.
+
+  This section assumes that you have already deployed the platform as indicated in :ref:`platform_Setup`.
+
+The platform supports configurations through the use of below environment variables.
+These environment variables are defined in the `.env` file located in the root directory of the platform.
+
+.. note::
+
+ If the platform is already running, before making any changes in the `.env` file, make sure to stop the platform services by running the following command:
+
+ Open a Windows powershell terminal with **administrator privilege** and go to the directory ``deployment_scripts``:
+
+ .. tabs::
+
+    .. code-tab::
+     :caption: powershell
+
+     cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+          
+
+ Run the following command to stop the platform, including containerized services and desktop processes:
+   
+ .. tabs::
+
+    .. code-tab::
+     :caption: powershell
+
+     .\Stop-Platform.ps1
+
+
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 15 85
+
+    * - Variable
+      - Description
+    * - ``SOLUTIONS_DIRECTORY_PATH``
+      - | Path to the directory where the solutions are stored. 
+        | Default to ``C:\Users\<user_name>\AppData\Roaming\Ansys\solutions``
+    * - ``PIM_PORT``
+      - | Port used by the instance management system. Default to ``8443``
+        | The port number must be unique and not used by any other service.
+    * - ``KC_PORT``
+      - | Port used by the Keycloak server. Default to ``8011``
+        | The port number must be unique and not used by any other service.
+    * - ``KC_ADMIN_USER``
+      - Keycloak admin user name. Default to ``admin``
+    * - ``KC_ADMIN_PASSWORD``
+      - Keycloak admin password. Default to ``admin``
+    * - ``OP_EMAIL_DOMAIN``
+      - Email domain used during the user registration process. Default to ``example.com``
+    * - ``PLATFORM_DEPLOYMENT_LOGS_DIR``
+      - | Path to the directory where the platform deployment logs are stored. 
+        | Default to ``C:\Users\<user_name>\AppData\Roaming\Ansys_solutions_platform_logs``
+       
+.. attention::
+
+    If users are already registered in the platform, changing the ``OP_EMAIL_DOMAIN`` environment variable will affect the existing users. 
+    Existing users will no longer be able to log in with their old email domain. They will need to re-register using the new email domain.
+    
+After making changes in the `.env` file, start the platform services using the following steps:
+
+* Open a Windows powershell terminal with **administrator privilege** and go to the directory ``deployment_scripts``:
+    
+.. tabs::
+    
+    .. code-tab::
+     :caption: powershell
+    
+     cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+    
+* Run the following commands to start the platform services with the new configurations:
+    
+.. tabs::
+    
+    .. code-tab::
+     :caption: powershell
+    
+     .\Configure-Platform.ps1
+
+.. tabs::
+    
+    .. code-tab::
+     :caption: powershell
+    
+     .\Start-Platform.ps1
