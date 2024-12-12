@@ -1,0 +1,837 @@
+ <!-- ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited. -->
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Troubleshoot issues &#8212; Ansys App Portal and Deployment Templates</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=d2ac875c" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../_static/documentation_options.js?v=8a448e45"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/troubleshooting';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://external.light.deployments.docs.solution.ansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.2';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Known limitations" href="limitations.html" />
+    <link rel="prev" title="Configure platform deployment" href="configure-env.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://external.light.deployments.docs.solution.ansys.com/version/stable/user_guide/troubleshooting.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MeiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+   
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="Ansys App Portal and Deployment Templates - Home"/>
+    <script>document.write(`<img src="../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="Ansys App Portal and Deployment Templates - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../deployment_on_vm/index.html">
+    Network Deployment
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_notes/index.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../deployment_on_vm/index.html">
+    Network Deployment
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_notes/index.html">
+    Release Notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="add_app.html">Add an app to the portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interact_app.html">Interact with apps on the portal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_user.html">Add users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keycloak.html">Manage users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop_start_services.html">Stop and start the platform once deployed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configure-env.html">Configure platform deployment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Troubleshoot issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Known limitations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uninstalling.html">Uninstalling the platform</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+     
+    <li class="breadcrumb-item breadcrumb-home">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">User guide</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Troubleshoot issues</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="troubleshoot-issues">
+<span id="troubleshooting"></span><h1>Troubleshoot issues<a class="headerlink" href="#troubleshoot-issues" title="Link to this heading">#</a></h1>
+<p>This page provides guidance on how to resolve common issues you may encounter when using the platform.</p>
+<section id="platform-services-or-portal-is-not-accessible">
+<h2>Platform services or portal is not accessible<a class="headerlink" href="#platform-services-or-portal-is-not-accessible" title="Link to this heading">#</a></h2>
+<p>To resolve this issue follow below steps:</p>
+<ol class="arabic">
+<li><p>Check network connectivity in WSL by running the following command in the WSL terminal:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+WSL</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ping<span class="w"> </span>google.com
+</pre></div>
+</div>
+</div></div><p>You should see a response similar to the following if network connectivity is available:</p>
+<img alt="../_images/check-network-wsl.png" src="../_images/check-network-wsl.png" />
+<p>If the network is not available, run the following commands on the host machine and then restart the host:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wsl<span class="w"> </span>--shutdown
+netsh<span class="w"> </span>winsock<span class="w"> </span>reset
+netsh<span class="w"> </span>int<span class="w"> </span>ip<span class="w"> </span>reset<span class="w"> </span>all
+netsh<span class="w"> </span>winhttp<span class="w"> </span>reset<span class="w"> </span>proxy
+ipconfig<span class="w"> </span>/flushdns
+</pre></div>
+</div>
+</div></div></li>
+</ol>
+<ol class="arabic" start="2">
+<li><p>Check Port 80 availability</p>
+<p>Port 80 must be free because the platform uses it to establish HTTP communication and serve web content.</p>
+<p>Check for existing services occupying Port 80 by running the following command in the Windows PowerShell terminal:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">netstat</span> <span class="o">-</span><span class="n">ano</span> <span class="o">|</span> <span class="n">findstr</span> <span class="p">:</span><span class="mi">80</span>
+</pre></div>
+</div>
+</div></div><p>This command displays information about the processes currently using port 80. The last column of the output is the <strong>Process ID (PID)</strong> of the process using that port.</p>
+<img alt="../_images/port_availability.png" src="../_images/port_availability.png" />
+<p>Open the Windows <strong>Task Manager</strong>, go to the <strong>Details</strong> tab, and find the process with the corresponding PID.</p>
+<p>This gives more information about the process, such as its name and resource usage.</p>
+<p>Right-click each matching process with the corresponding PID (except the system process with PID = 4) and select <strong>End task</strong> to stop the process.</p>
+</li>
+<li><p>Check the hosts file entries</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Windows operating systems, the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file is located at <code class="docutils literal notranslate"><span class="pre">C:\\Windows\\System32\\drivers\\etc\\hosts</span></code>.</p>
+</div>
+<p>Ensure that the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file contains the correct mapping of the WSL Native IP address with platform services.</p>
+<dl>
+<dt>Example of correct mapping:</dt><dd><div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+hosts</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;wsl_native_ip&gt; keycloak.local.se
+&lt;wsl_native_ip&gt; traefik.local.se
+&lt;wsl_native_ip&gt; oauth.local.se
+&lt;wsl_native_ip&gt; portal.local.se
+</pre></div>
+</div>
+</div></div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To fetch the <code class="docutils literal notranslate"><span class="pre">&lt;wsl_native_ip&gt;</span></code> value, run this command in the WSL terminal:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+WSL</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>eth0
+</pre></div>
+</div>
+</div></div></div>
+</dd>
+</dl>
+<p>Ensure that there are no duplicate entries with different IP addresses in the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file for the platform services.</p>
+<dl>
+<dt>Example of incorrect duplicate entries:</dt><dd><div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+hosts</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;wsl_native_ip&gt; portal.local.se
+&lt;some_other_ip&gt; portal.local.se
+</pre></div>
+</div>
+</div></div></dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="user-cannot-log-in-to-portal-or-receives-an-error-when-accessing-portal-ui">
+<h2>User cannot log in to portal or receives an error when accessing portal UI<a class="headerlink" href="#user-cannot-log-in-to-portal-or-receives-an-error-when-accessing-portal-ui" title="Link to this heading">#</a></h2>
+<p>In this case, the user can access the Ansys App Portal, but either cannot log in or receives an error when attempting to access the UI.</p>
+<p>To resolve this issue:</p>
+<ol class="arabic">
+<li><p>Check the user registration details in the Keycloak Admin Console.</p></li>
+<li><p>Search for the user with the correct name (as specified in the <a class="reference internal" href="new_user.html#register-new-user"><span class="std std-ref">user registration form</span></a>).</p></li>
+<li><p>In the user details, verify that the user is registered with the correct email domain name (as specified in the .env file).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The email address for the user must have the email domain specified by the <code class="docutils literal notranslate"><span class="pre">OP_EMAIL_DOMAIN</span></code> environment variable in the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p>
+</div>
+<dl>
+<dt>Example of invalid email domain:</dt><dd><p>In this example, the user <strong>test1</strong> is registered with a domain of <cite>&#64;test.com</cite>. This is invalid because the platform was launched with a domain of <cite>&#64;example.com</cite>.</p>
+<img alt="../_images/invalid-user-list.png" class="align-center" src="../_images/invalid-user-list.png" />
+</dd>
+</dl>
+</li>
+</ol>
+<p>For more information, visit <a class="reference internal" href="keycloak.html#keycloak"><span class="std std-ref">Manage users</span></a>.</p>
+</section>
+<section id="error-occurs-while-starting-platform-services">
+<h2>Error occurs while starting platform services<a class="headerlink" href="#error-occurs-while-starting-platform-services" title="Link to this heading">#</a></h2>
+<p>To resolve this issue:</p>
+<ol class="arabic">
+<li><p>Check WSL Network connectivity by running this command:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+WSL</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span>google.com
+</pre></div>
+</div>
+</div></div></li>
+<li><p>If WSL network connectivity is not available, run these commands on the host machine and then restart the host:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">netsh</span> <span class="n">winsock</span> <span class="n">reset</span>
+<span class="n">netsh</span> <span class="nb">int</span> <span class="n">ip</span> <span class="n">reset</span> <span class="nb">all</span>
+<span class="n">netsh</span> <span class="n">winhttp</span> <span class="n">reset</span> <span class="n">proxy</span>
+<span class="n">ipconfig</span> <span class="o">/</span><span class="n">flushdns</span>
+</pre></div>
+</div>
+</div></div></li>
+</ol>
+</section>
+<section id="projects-of-an-app-deployed-on-the-portal-are-not-accessible">
+<h2>Projects of an app deployed on the portal are not accessible<a class="headerlink" href="#projects-of-an-app-deployed-on-the-portal-are-not-accessible" title="Link to this heading">#</a></h2>
+<p>To resolve this issue:</p>
+<ol class="arabic">
+<li><p>Check for the app service entry in the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file of the host machine.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>On Windows operating systems, the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file is located at <code class="docutils literal notranslate"><span class="pre">C:\\Windows\\System32\\drivers\\etc\\hosts</span></code>.</p>
+</div>
+</li>
+<li><p>Ensure that the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file contains the correct mapping of the WSL Native IP address with the app service.</p>
+<dl>
+<dt>Example of correct mapping:</dt><dd><div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">hosts</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> &lt;wsl_native_ip&gt; &lt;application_service_name&gt;.local.se
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To fetch the <code class="docutils literal notranslate"><span class="pre">&lt;wsl_native_ip&gt;</span></code> value, run this command in the WSL terminal:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+WSL</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>eth0
+</pre></div>
+</div>
+</div></div></div>
+</dd>
+</dl>
+</li>
+<li><p>Ensure that there are no duplicate entries with different IP addresses in the <code class="docutils literal notranslate"><span class="pre">hosts</span></code> file for the app service.</p>
+<dl>
+<dt>Example of incorrect duplicate entries:</dt><dd><div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">hosts</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;wsl_native_ip&gt; &lt;application_service_name&gt;.local.se
+&lt;some_other_ip&gt; &lt;application_service_name&gt;.local.se
+</pre></div>
+</div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="cannot-start-optislang">
+<h2>Cannot start optiSLang<a class="headerlink" href="#cannot-start-optislang" title="Link to this heading">#</a></h2>
+<p>When starting optiSlang, the following error message is shown:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">start</span> <span class="pre">optiSLang</span> <span class="pre">242.</span> <span class="pre">Please</span> <span class="pre">contact</span> <span class="pre">your</span> <span class="pre">IT</span> <span class="pre">admin</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">that</span> <span class="pre">optiSLang</span> <span class="pre">is</span> <span class="pre">reachable</span> <span class="pre">and</span> <span class="pre">try</span> <span class="pre">again.</span></code></p>
+<p>The error is likely caused by the host machine being unable to reach the WSL Ubuntu distribution files system.</p>
+<p>One way to verify this is to open the WSL file system from Windows Explorer. If you get an error like the shown in the following image, it confirms that the host machine is not able to reach the WSL file system.</p>
+<a class="reference internal image-reference" href="../_images/error_accessing_linux_file_system.png"><img alt="../_images/error_accessing_linux_file_system.png" src="../_images/error_accessing_linux_file_system.png" style="width: 75%;" />
+</a>
+<p>To resolve this issue:</p>
+<ol class="arabic">
+<li><p>Restart WSL by running this script:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>wsl<span class="w"> </span>--shutdown
+<span class="w">   </span>wsl
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Restart the platform as described in <a class="reference internal" href="stop_start_services.html#start-platform"><span class="std std-ref">Start up the platform</span></a>.</p></li>
+</ol>
+</section>
+<section id="connection-to-the-site-is-not-secure">
+<h2>Connection to the site is not secure<a class="headerlink" href="#connection-to-the-site-is-not-secure" title="Link to this heading">#</a></h2>
+<p>When accessing the platform services, you may encounter a warning message that the connection to the site is not secure.</p>
+<p>To resolve this issue:</p>
+<p>Select an option to continue to site.</p>
+<a class="reference internal image-reference" href="../_images/continue-site.png"><img alt="../_images/continue-site.png" src="../_images/continue-site.png" style="width: 50%;" />
+</a>
+</section>
+<section id="cannot-connect-to-the-product-instance-manager-please-contact-your-it-admin-to-make-sure-that-this-component-is-reachable">
+<h2>Cannot connect to the Product instance Manager. Please contact your IT admin to make sure that this component is reachable<a class="headerlink" href="#cannot-connect-to-the-product-instance-manager-please-contact-your-it-admin-to-make-sure-that-this-component-is-reachable" title="Link to this heading">#</a></h2>
+<p>When executing the optiSLang workflow, the following error message is shown:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">connect</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">Product</span> <span class="pre">instance</span> <span class="pre">Manager.</span> <span class="pre">Please</span> <span class="pre">contact</span> <span class="pre">your</span> <span class="pre">IT</span> <span class="pre">admin</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">that</span> <span class="pre">this</span> <span class="pre">component</span> <span class="pre">is</span> <span class="pre">reachable.</span></code></p>
+<a class="reference internal image-reference" href="../_images/pim_connection_error.png"><img alt="../_images/pim_connection_error.png" src="../_images/pim_connection_error.png" style="width: 30%;" />
+</a>
+<p>To resolve this issue follow below steps:</p>
+<ol class="arabic">
+<li><p>Go to the root directory of the platform and run the following command:</p></li>
+<li><p>Go to the Scripts directory and activate the virtual environment by running the following command:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+CMD</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>.<span class="se">\.</span>venv<span class="se">\S</span>cripts<span class="se">\</span>
+</pre></div>
+</div>
+</div></div><div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+CMD</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>activate
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Stop only the pim by running the following command:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+CMD</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>single_node.py<span class="w"> </span>-s<span class="w"> </span>pim<span class="w"> </span>-a<span class="w"> </span>stop
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Again start only the pim by running the following command:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+CMD</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>single_node.py<span class="w"> </span>-s<span class="w"> </span>pim
+</pre></div>
+</div>
+</div></div></li>
+</ol>
+</section>
+<section id="cannot-execute-deploy-platform-ps1-script">
+<h2>Cannot execute <code class="docutils literal notranslate"><span class="pre">Deploy-Platform.ps1</span></code> script<a class="headerlink" href="#cannot-execute-deploy-platform-ps1-script" title="Link to this heading">#</a></h2>
+<p>When executing the <code class="docutils literal notranslate"><span class="pre">Deploy-Platform.ps1</span></code> script, you get the following error messages:</p>
+<section id="script-is-not-digitally-signed">
+<h3>Script is Not Digitally Signed<a class="headerlink" href="#script-is-not-digitally-signed" title="Link to this heading">#</a></h3>
+<img alt="../_images/signed_error.png" class="align-center" src="../_images/signed_error.png" />
+<p>To resolve this issue, follow the next steps:</p>
+<ol class="arabic">
+<li><p>Locate <code class="docutils literal notranslate"><span class="pre">Ansys_App_Portal_and_Deployment_Templates.zip</span></code></p></li>
+<li><p>Right click in the zip file and select <cite>Properties</cite>.</p></li>
+<li><p>Unblock the file and click in <cite>Apply</cite> and then <cite>Ok</cite>.</p>
+<img alt="../_images/unblock.png" class="align-center" src="../_images/unblock.png" />
+</li>
+<li><p>Unzip the file into a new directory that is <em>not</em> the root directory.</p></li>
+<li><p>Continue the steps as  defined in <a class="reference internal" href="../getting_started/platform-setup.html#deploy"><span class="std std-ref">Deploy and start the platform</span></a>.</p></li>
+</ol>
+</section>
+<section id="corrupt-virtual-environment">
+<h3>Corrupt Virtual Environment<a class="headerlink" href="#corrupt-virtual-environment" title="Link to this heading">#</a></h3>
+<section id="access-denied-to-virtual-environment-activation-script">
+<h4>Access Denied to Virtual Environment Activation Script<a class="headerlink" href="#access-denied-to-virtual-environment-activation-script" title="Link to this heading">#</a></h4>
+<img alt="../_images/access-denied-to-venv-activation-script.png" class="align-center" src="../_images/access-denied-to-venv-activation-script.png" />
+</section>
+<section id="access-denied-to-virtual-environment-files">
+<h4>Access Denied to Virtual Environment Files<a class="headerlink" href="#access-denied-to-virtual-environment-files" title="Link to this heading">#</a></h4>
+<img alt="../_images/access-denied-to-venv-files.png" class="align-center" src="../_images/access-denied-to-venv-files.png" />
+<p>To resolve above issues, follow these steps:</p>
+<ol class="arabic">
+<li><p>Close all running terminals where the platform script was launched.</p></li>
+<li><p>Navigate to the root directory of the platform and manually delete the <code class="docutils literal notranslate"><span class="pre">.venv</span></code> directory.</p></li>
+<li><p>Continue the steps as  defined in <a class="reference internal" href="../getting_started/platform-setup.html#deploy"><span class="std std-ref">Deploy and start the platform</span></a>.</p></li>
+</ol>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-services-or-portal-is-not-accessible">Platform services or portal is not accessible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-cannot-log-in-to-portal-or-receives-an-error-when-accessing-portal-ui">User cannot log in to portal or receives an error when accessing portal UI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-occurs-while-starting-platform-services">Error occurs while starting platform services</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projects-of-an-app-deployed-on-the-portal-are-not-accessible">Projects of an app deployed on the portal are not accessible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-start-optislang">Cannot start optiSLang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-the-site-is-not-secure">Connection to the site is not secure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-connect-to-the-product-instance-manager-please-contact-your-it-admin-to-make-sure-that-this-component-is-reachable">Cannot connect to the Product instance Manager. Please contact your IT admin to make sure that this component is reachable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cannot-execute-deploy-platform-ps1-script">Cannot execute <code class="docutils literal notranslate"><span class="pre">Deploy-Platform.ps1</span></code> script</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-is-not-digitally-signed">Script is Not Digitally Signed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrupt-virtual-environment">Corrupt Virtual Environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#access-denied-to-virtual-environment-activation-script">Access Denied to Virtual Environment Activation Script</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#access-denied-to-virtual-environment-files">Access Denied to Virtual Environment Files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <center>
+        <hr>
+        <p class="footer">Release 0.2.2 &mdash; ©2024, ANSYS, Inc. All rights reserved. <br>Contains proprietary and confidential information of ANSYS, Inc. and its subsidiaries and affiliates.<br>Unauthorized use, distribution, or duplication is
+            prohibited.</p>
+    </center>
+
+  </body>
+</html>

@@ -1,0 +1,59 @@
+.. _configure_env:
+
+Configure platform deployment
+#############################
+
+.. note::
+
+  **This section is optional** and only required if you want to change the default configuration of the platform.
+
+The platform supports configurations through the use of below environment variables.
+These environment variables are defined in the `.env` file located in the root directory of the platform.
+
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 15 85
+
+    * - Variable
+      - Description
+    * - ``PIM_PORT``
+      - | Port used by the instance management system. Default to ``8443``
+        | The port number must be unique and not used by any other service.
+    * - ``KC_PORT``
+      - | Port used by the Keycloak server. Default to ``8011``
+        | The port number must be unique and not used by any other service.
+
+Changing configuration for the deployment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Open a Windows powershell terminal with **administrator privilege** and navigate to the root directory.
+
+.. tabs::
+
+  .. code-tab::
+    :caption: powershell
+
+    cd .\Ansys_App_Portal_and_Deployment_Templates\
+
+
+* Open the `.env` file in a text editor and make changes for the environment variables listed above.
+ 
+* Open a Windows powershell terminal with **administrator privilege** and navigate to the directory ``deployment_scripts``:
+
+.. tabs::
+
+  .. code-tab::
+    :caption: powershell
+
+    cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+          
+
+* Run the following command to deploy the platform
+   
+.. tabs::
+
+  .. code-tab::
+    :caption: powershell
+
+    .\Deploy-Platform.ps1

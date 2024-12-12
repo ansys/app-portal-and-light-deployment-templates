@@ -1,0 +1,108 @@
+.. _platform_Setup:
+
+Platform deployment
+###################
+
+.. note::
+
+  By deploying the platform, you acknowledge and agree that you are installing certain third-party products and/or open-source software (collectively, "third-party software"). Such third-party software is subject to separate terms and conditions, not the terms of your Ansys software license agreement. Ansys does not warrant or support use of such third-party software separately from the Ansys products.
+
+
+Download the package
+=====================
+
+#. Download the `App Portal and One Node Light Deployment templates (Windows)` from the `Ansys Customer Portal <https://download.ansys.com/Platform%20Components>`_.
+
+#. Locate ``Ansys_App_Portal_and_Deployment_Templates.zip``
+
+#. Unzip the file into a new directory that is *not* the root directory.
+
+
+.. _deploy:
+
+Deploy and start the platform
+=============================
+
+.. note::
+
+   It is possible to configure the platform by changing environment variables in the .env file located at the root directory.
+   Refer a section :ref:`configure_env` to configure the platform using environment variables.
+
+
+#. Open a Windows powershell terminal with **administrator privilege** and go to the directory ``deployment_scripts``:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+
+#. Execute the deployment script. It will check all prerequisites and notify you about failures, with the corresponding corrections. During the process, 
+   it will prompt you to enter some required inputs for the platform setup (see below section for an explanation about those inputs):
+   
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          .\Deploy-Platform.ps1
+
+
+Configuration inputs required for the platform deployment
+---------------------------------------------------------
+
+1. **Ansys optiSLang® installation path**:
+
+   - **Default**: ``C:\Program Files\Ansys Inc\v242``
+   
+   Specify the installation location of **Ansys optiSLang®** product.
+   If **Ansys optiSLang®** product is not installed in the default directory, select option 2 to provide a custom installation path.
+
+2. **Solutions directory path**:
+
+   - **Default**: ``C:\Users\<user_name>\AppData\Roaming\Ansys\solutions``
+   
+   Specify the solutions directory path used to detect an `.awa` solution file. You can select option 2 to provide a custom path.
+
+3. **Email Domain**
+   
+   - **Default**: ``example.com``
+
+   Provide the email domain used during the user registration process.
+
+   .. note ::
+      Update this to the relevant domain, as only users with email addresses from this domain will be able to register on the Ansys App Portal.
+
+4. **Keycloak Admin Credentials**
+
+   - **Default**: username: ``admin`` and password: ``admin``
+
+   This is the credential for the Keycloak administrator login. Selecting option 2 will allow user to provide custom credentials.
+
+.. note::
+
+   The deployment script ``Deploy-Platform.ps1`` will automatically log any errors or warnings in the log file.
+   The location where the log files will be stored is ``C:\Users\<user_name>\AppData\Roaming\Ansys_solutions_platform_logs``.
+
+.. _starting-platform:
+
+.. note::
+
+   The deployment script automatically sets an inbound rule to open the following port range in the Windows firewall. These ports are used by the platform services.
+
+   .. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 15 85
+
+    * - Port
+      - Description
+    * - ``PIM_PORT``
+      - Port used by the instance management system. Default to ``8443``.
+    * - ``3000-9000``
+      - Port range where optiSLang instances are launched.
+    * - ``30000-65000``
+      - Port range where a service for communicating with optiSLang is launched.
+
+
