@@ -1,0 +1,140 @@
+.. _prerequisites:
+
+Pre-requisites
+##############
+
+Required access
+===============
+
+.. list-table::
+  :stub-columns: 1
+  :widths: 20 80
+
+  * - Internet access
+    - Specifically, you must have access to `Docker Hub <https://hub.docker.com/>`_ and `PyPI <https://pypi.org/>`_.
+  * - Administrative access
+    - You must have **administrative-level** access to set firewall rules.
+
+
+Required software
+=================
+
+.. list-table::
+  :stub-columns: 1
+  :widths: 20 80
+
+  * - Supported Operating systems:
+    - Windows 10, Windows 11, or Windows Server 2022
+
+  * - System Language
+    - English (United States)
+
+  * - Ansys products
+    - optiSLang **2024 R2** or **optiSLang 2024 R2 SP2**
+
+      .. only:: internal
+
+        .. admonition:: For Ansys Internal testing:
+          :class: attention
+
+          Make sure that you have installed latest v242 certified version from `artifactory <https://eu.artifactory.ansys.com/ui/repos/tree/General/v242_Certified>`_.
+
+  * - Third-party products
+    -  * **Python** 3.9 to 3.11, with ``packaging`` and ``toml`` dependencies installed
+       * **WSL 2**: Windows Subsystem for Linux (WSL) is a feature of Windows that allows you to run a Linux environment on your Windows machine, 
+         without the need for a separate virtual machine or dual booting. It is needed to host the app platform's services, as they run in Linux containers. More information
+         about WSL `here <https://learn.microsoft.com/en-us/windows/wsl/about>`__.
+         To install it, just run the following in **administrator mode** and restart the machine:
+
+         .. tabs::
+
+          .. code-tab:: bash
+              :caption: PowerShell
+
+              wsl --install --no-distribution
+              Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux"
+
+
+       
+       * **Linux distribution in WSL**: the platform needs a Linux distribution to be executed. In order to install it, just run the following in **administrator mode**:
+         
+         .. tabs::
+
+          .. code-tab:: bash
+              :caption: PowerShell
+
+              wsl --install -d Ubuntu-20.04
+
+       * **Docker and Docker Compose** (2.17.0 or greater). Docker is a platform for developing, shipping, and running applications in isolated containers, and Docker Compose allows
+         you to define and manage multi-container applications with a single configuration file. Follow the next steps for the installation:
+
+         1: Update the package list and install required packages
+
+         .. code-block:: bash
+
+            sudo apt-get update
+
+         2: Install required packages
+
+         .. code-block:: bash
+  
+            sudo apt-get install ca-certificates curl
+
+         3: Create the keyring directory
+
+         .. code-block:: bash
+
+            sudo install -m 0755 -d /etc/apt/keyrings
+          
+         4: Add the Docker GPG key
+
+         .. code-block:: bash
+
+            sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+         5: Change the keyring file permissions
+
+         .. code-block:: bash
+
+            sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+         6: Add the Docker repository
+
+         .. code-block:: bash
+
+            echo \
+                "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \ 
+                https://download.docker.com/linux/ubuntu \
+                $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+                sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        
+         7: Update the package list
+
+         .. code-block:: bash
+
+            sudo apt-get update
+
+         8: Install Docker Packages
+
+         .. code-block:: bash
+
+            sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+         9: Verify Docker Installation
+
+         .. code-block:: bash
+
+            sudo docker run hello-world
+          
+         10: Configure User Permissions
+
+         .. code-block:: bash
+
+            sudo usermod -aG docker $USER
+
+         11: Restart WSL
+
+         .. code-block:: bash
+
+            sudo reboot
+

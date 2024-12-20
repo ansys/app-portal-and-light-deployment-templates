@@ -1,0 +1,17 @@
+.. _ref_release_notes:
+
+Release notes
+##############
+
+What's new in Ansys App Portal and Deployment Templates |version|
+=================================================================
+
+Ansys App Portal and Deployment Templates |version| is a feature release that includes the following enhancements:
+
+* The platform automatically restarts when WSL is restarted.
+* The Deployment script Deploy-Platform.ps1 updated to detect spaces in the installation path and show an error message.
+* After timeout is reached while deploying the platform, the deployment restarts on the user confirmation.
+* When the CAE engineer executes Deploy-Platform.ps1, a new python environment is always created to ensure that the platform is deployed in a clean environment.
+* Documentation updated for configuring the platform with custom values for PIM_PORT and KC_PORT environment variables in the .env file.
+* General Documentation improvements.
+* The online version of the documentation is now available `here <https://external.light.deployments.docs.solution.ansys.com/>`_.

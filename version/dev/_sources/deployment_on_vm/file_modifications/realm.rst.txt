@@ -1,0 +1,62 @@
+.. _realm:
+
+Update the ``realm-export.json`` file
+#######################################
+
+Gather required values
+=======================
+
+Get the values needed to update the ``realm-export.json`` file.
+
+.. list-table::
+   :stub-columns: 1
+   :header-rows: 1
+   :widths: 10 90
+
+   * - Value
+     - Description
+   * - ``<hostname>``
+     - Host name of the VM identified in the :ref:`gather-info-env` section of :ref:`env`.
+   * - ``<domain_suffix>``
+     - Full domain suffix of the VM identified in the :ref:`gather-info-env` section  of :ref:`env`.
+   * - ``<domain_short_suffix>``
+     - Short domain suffix of the VM identified in the :ref:`gather-info-env` section of :ref:`env`.
+   * - ``<TR_PORT>``
+     - Port that is set in the :ref:`edit-variables-env` section  of :ref:`env`.
+
+
+Update JSON key entries
+=========================
+
+#. In :file:`Ansys_App_Portal_and_Deployment_Template`, go to the :file:`src/ansys/saf/one_node/portal-packaged/keycloak` directory.
+
+#. Open :file:`realm-export.json`.
+
+#. Navigate to the section where the following value is set:
+
+   .. code-block:: json
+      :caption: realm-export.json
+
+      "clientId": "oauth2-proxy"
+
+#. In the same section, find the following key entries:
+
+   *  ``"rootUrl"``
+   * ``"adminUrl"``
+   * ``"baseUrl"``
+   * ``"redirectUris"``
+
+#. Update these key entries with the following values:
+
+   .. code-block:: json
+      :caption: realm-export.json
+
+      "rootUrl": "http://portal.<hostname>.<domain_suffix>:<TR_PORT>"
+
+      "adminUrl": "http://portal.<hostname>.<domain_suffix>:<TR_PORT>"
+
+      "baseUrl": "http://portal.<hostname>.<domain_suffix>:<TR_PORT>/"
+
+      "redirectUris": [
+      "http://oauth.<hostname>.<domain_suffix>:<TR_PORT>/oauth2/callback"
+      ]

@@ -1,0 +1,33 @@
+.. _firewall_rules:
+
+Set up a firewall inbound rules
+################################
+
+To function properly, the platform needs certain ports to be configured through firewall inbound  rules. 
+
+Run the following command to set the firewall rule:
+
+.. tabs::
+
+    .. code-tab:: pwsh
+        :caption: PowerShell
+
+        New-NetFirewallRule -DisplayName "Allow Ansys App Traffic" -Direction Inbound -Profile Any -Action Allow -LocalPort 8443,3000-9000,30000-65000 -Protocol TCP
+
+.. note::
+
+   The deployment script automatically sets an inbound rule to open the following port range in the Windows firewall. These ports are used by the platform services.
+
+   .. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+    :widths: 15 85
+
+    * - Port
+      - Description
+    * - ``PIM_PORT``
+      - Port used by the PIM Light server. Default to ``8443``.
+    * - ``3000-9000``
+      - Port range where optiSLang instances are launched.
+    * - ``30000-65000``
+      - Port range where a service for communicating with optiSLang is launched.

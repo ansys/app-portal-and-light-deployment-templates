@@ -1,0 +1,27 @@
+.. _vm-file-mods:
+
+Update platform files
+######################
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: Update the ``.env`` file
+      :link-type: doc
+      :link: env
+
+   .. grid-item-card:: Update the ``docker-compose.yaml`` file
+      :link-type: doc
+      :link: docker_compose
+
+   .. grid-item-card:: Update the ``realm-export.json`` file
+      :link-type: doc
+      :link: realm
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   env
+   docker_compose
+   realm

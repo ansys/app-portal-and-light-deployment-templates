@@ -1,0 +1,36 @@
+.. _port_mapping:
+
+Set up a port proxy
+#####################
+
+Follow these instructions to establish proxy service on the ``<KC_PORT>`` and ``<TR_PORT>`` ports. More information about these ports in :ref:`env`
+
+
+#. In the WSL terminal of the VM, fetch the WSL native IP:
+
+   .. tabs::
+
+     .. code-tab:: bash
+       :caption: WSL
+
+       ip addr show eth0
+
+#. In a PowerShell terminal, run the following ``portproxy`` commands to establish proxy service to the ports:
+
+   a. Apply ``portproxy`` to ``<KC_PORT>``:
+
+      .. tabs::
+
+        .. code-tab:: bash
+          :caption: PowerShell
+
+          netsh interface portproxy add v4tov4 listenport=<KC_PORT> connectaddress=<wsl_native_ip> connectport=<KC_PORT>
+
+   b. Apply ``portproxy`` to ``<TR_PORT>``:
+
+      .. tabs::
+
+        .. code-tab:: bash
+          :caption: PowerShell
+
+          netsh interface portproxy add v4tov4 listenport=<TR_PORT> connectaddress=<wsl_native_ip> connectport=<TR_PORT>

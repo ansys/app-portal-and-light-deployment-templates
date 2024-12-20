@@ -1,0 +1,74 @@
+.. _access-vm-platform-portal:
+
+Enable user access to the portal
+##################################
+
+Follow these instructions to make and verify the required changes.
+
+
+Gather required values
+=======================
+
+The following values are required to update entries in the ``hosts`` file.
+
+.. list-table::
+   :stub-columns: 1
+   :header-rows: 1
+   :widths: 10 90
+
+   * - Value
+     - Description
+   * - ``<vm_ip>``
+     - IP address on the VM.
+   * - ``<vm_hostname>``
+     - Hostname of the VM.
+   * - ``<domain_suffix>``
+     - Full domain suffix of the VM.
+
+.. note::
+  These values are known to IT administrator who deploys the Ansys App Portal and Deployment Templates platform on the VM.
+
+.. tip::
+    On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+Update portal entries
+======================
+
+Update the following entries using the format shown here:
+
+.. code-block::
+  :caption: hosts
+
+  <vm_ip> <vm_hostname>.<domain_suffix>
+  <vm_ip> keycloak.<vm_hostname>.<domain_suffix>
+  <vm_ip> oauth.<vm_hostname>.<domain_suffix>
+  <vm_ip> portal.<vm_hostname>.<domain_suffix>
+  <vm_ip> traefik.<vm_hostname>.<domain_suffix>
+  <vm_ip> solutions.<vm_hostname>.<domain_suffix>
+
+
+Verify portal entries
+=======================
+
+Once added, the entries should look like this:
+
+.. image:: /_static/documenting/local_hosts.png
+
+
+Verify portal access
+======================
+
+Once the entries are updated in the ``hosts`` file, the user should be able to access the Ansys App Portal as follows:
+
+#. Open the Ansys App Portal in a browser at the following URL:
+
+   .. code-block::
+
+     portal.<vm_hostname>.<domain_suffix>:8011
+
+#. Log in with portal user credentials.
+
+   If access is enabled, the portal opens to its **Home** page in a new browser tab.
+
+
+

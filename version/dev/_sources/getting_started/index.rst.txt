@@ -1,0 +1,37 @@
+.. _ref-getting-started:
+
+Getting started
+===============
+
+This section provides information to help you get started using the Ansys App Portal and Deployment Templates.
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: (1) Prerequisites
+      :link-type: doc
+      :link: pre-req
+
+      Make sure you fulfill all the requirements for deploying and using the platform.
+
+   .. grid-item-card:: (2) Platform deployment
+      :link-type: doc
+      :link: platform-setup
+
+      Download the platform package and deploy it.
+
+Once you have completed all the steps in these sections, follow the instructions provided in the :ref:`ref_user_guide_index` to test and start working with the platform.
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   pre-req
+   platform-setup
+
+
+
+
+
+

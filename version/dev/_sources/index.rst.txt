@@ -1,0 +1,158 @@
+####################################################
+Ansys App Portal and Deployment Templates |version|
+####################################################
+
+Welcome to the **Ansys App Portal and Deployment Templates**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. only:: external
+
+   .. list-table::
+      :stub-columns: 1
+      :widths: 25 75
+
+      * - Project name:
+        - ``Ansys App Portal and Deployment Templates``
+      * - Package name:
+        - ``ansys-app-portal-and-deployment-templates``
+      * - Supported Python versions:
+        - 3.9 to 3.11
+      * - Supported operating systems
+        - Windows 10, Windows 11, and Windows Server 2022
+
+
+The :program:`Ansys App Portal and Deployment Templates` provide all the containerized services needed to leverage single-node deployments for the execution of solution app instances. This allows you to deploy an **Ansys optiSLang®** web app (AWA) on the same node where optiSLang is installed.
+
+.. note::
+   These templates are compatible only with web apps created with either **Ansys optiSLang® 2024 R2** release or **Ansys optiSLang® 2024 R2 SP2** service pack.
+
+   Apps created from **Ansys optiSLang® 2024 R2** and **Ansys optiSLang® 2024 R2 SP2** service pack cannot be deployed together. 
+   For more information, see the :ref:`known_limitations`
+
+Services included:
+~~~~~~~~~~~~~~~~~~
+
+Ansys App Portal:
+ User interface for managing solution apps and the projects created for them.
+
+Product Instance Manager (PIM):
+ Manages the starting and stopping of the **Ansys optiSLang®** product.
+
+Authentication services:
+ Used to authenticate users and provide access to platform services.
+
+Databases:
+ Used to store and manage data in the Ansys App Portal and in each solution app.
+
+API Gateway:
+ Provides a single entry point for managing, routing, and securing API requests between clients and backend services.
+
+App service:
+ Used to manage containerized applications in the platform.
+
+App Adapter service:
+ Used to include the necessary Dockerfiles and Docker Compose files for running applications.
+
+Observability services:
+  Used to analyze and understand system behavior through metrics, logs, and traces.
+
+.. card:: Release Notes
+   :margin: 5 0 0 0
+
+   Learn about the new features, enhancements, and bug fixes in the latest release of the templates.
+
+   .. grid:: 3
+      :gutter: 4
+
+      .. grid-item-card:: Release notes
+         :link-type: doc
+         :link: release_notes/index
+         :shadow: lg
+
+         Check out the latest release notes for the platform to learn about new features, enhancements, and bug fixes.
+
+      .. grid-item-card:: Known issues and limitations
+         :link-type: doc
+         :link: user_guide/limitations
+         :shadow: lg
+
+         Review the known issues and limitations in the platform to avoid potential problems during deployment and usage.
+
+.. card:: Documentation
+   :margin: 5 0 0 0
+
+   To learn how to set up and use the templates, review the following sections:
+
+   .. grid:: 3
+      :gutter: 4
+
+      .. grid-item-card:: Getting started
+         :link-type: doc
+         :link: getting_started/index
+         :shadow: lg
+
+         Verify platform pre-requisites, set up the platform, and configure Windows firewall rules.
+
+      .. grid-item-card:: User guide
+         :link-type: doc
+         :link: user_guide/index
+         :shadow: lg
+
+         Test the platform, manage users, resolve common issues, and review known limitations.
+
+      .. grid-item-card:: VM deployment guide
+         :link-type: doc
+         :link: deployment_on_vm/index
+         :shadow: lg
+
+         Modify the platform setup and user access for deployment on a virtual machine (VM) instance.
+
+      .. grid-item-card:: Troubleshooting guide
+         :link-type: doc
+         :link: user_guide/troubleshooting
+         :shadow: lg
+
+         Learn how to troubleshoot common issues that may occur during platform deployment and usage.
+
+.. only:: internal
+
+   .. card:: Ansys Internal documentation
+      :margin: 5 0 0 0
+
+      To learn how to contribute to the platform project, review the following section:
+
+      .. grid:: 3
+         :gutter: 4
+
+         .. grid-item-card:: Contributors
+            :link: https://cautious-barnacle-lnoez13.pages.github.io/version/stable/contributors/index.html
+            :shadow: lg
+
+            Learn about the Ansys Internal release process and how to test an individual containerized solution by itself.
+
+.. only:: internal
+
+   .. seealso::
+
+      * For more information about SAF, see the `SAF general presentations <https://ansys.sharepoint.com/:f:/r/sites/SolutionApplicationFrameworkSAF/Shared%20Documents/General/Documentation/SAF%20General%20presentations>`__ available on the Solution Applications Framework SharePoint site.
+
+      * For information on general solution-development topics, see the `Ansys Solution developer's guide <https://dev-docs.solutions.ansys.com/>`_. It provides guidance on framework-agnostic tasks such as how to set up, test, document, and build a UI for your solution app.
+
+
+
+
+.. include:: toc_tree.rst
+
+
+.. Indices and tables
+.. ==================
+.. * :ref:`genindex`
+.. * :ref:`search`
+.. * :ref:`modindex`
+
+
+.. |GH-CI| image:: https://github.com/ansys-internal/solutions-saf-doc/actions/workflows/ci_cd.yml/badge.svg
+   :target: https://github.com/ansys-internal/solutions-saf-doc/actions/workflows/ci_cd.yml
+   :alt: GH-CI
+

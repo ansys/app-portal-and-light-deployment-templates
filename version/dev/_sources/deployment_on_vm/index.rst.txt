@@ -1,0 +1,67 @@
+.. _ref_deployment_on_vm:
+
+Network deployment
+##################
+
+This guide provides instructions for configuring the platform so that it can be deployed on a network virtual machine (VM). This setup allows users to access the apps and the App Portal over the network.
+
+.. important::
+
+   The following steps might require advanced IT administrator skills. We recommend contacting your local IT admin for additional support.
+
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: (1) Stop the platform
+      :link-type: doc
+      :link: stop_platform_vm
+
+      Stop the platform services.
+
+   .. grid-item-card:: (2) Update platform files
+      :link-type: doc
+      :link: file_modifications/index
+
+      Update the platform configuration files.
+
+   .. grid-item-card:: (3) Set up a port proxy
+      :link-type: doc
+      :link: port_mapping
+
+      Establish proxy service for the ports on which the Ansys App Portal services run.
+
+   .. grid-item-card:: (4) Start the platform
+      :link-type: doc
+      :link: start_platform_vm
+
+      Start up the platform services.
+
+   .. grid-item-card:: (5) Update the hosts file
+      :link-type: doc
+      :link: hosts_file_modifications/index
+
+      Update the ``hosts`` file to make the platform and the deployed solution apps accessible on the virtual network.
+
+   .. grid-item-card:: (6) Enable user access to the virtual network
+      :link-type: doc
+      :link: access_vm_platform/index
+
+      Update the ``hosts`` file on a user's local machine to enable user access to the Ansys App Portal and deployed apps.
+
+Once you have completed these modifications, follow the instructions in the :ref:`ref_user_guide_index` to test and start working with the `Ansys App Portal and Deployment Templates platform`.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   stop_platform_vm
+   file_modifications/index
+   port_mapping
+   set_firewall
+   start_platform_vm
+   hosts_file_modifications/index
+   access_vm_platform/index
+
+
+

@@ -1,0 +1,55 @@
+
+.. _ref-testing-interact-app:
+
+Interact with apps on the portal
+##################################
+
+.. |ico-help| image:: /_static/documenting/icon_help.png
+
+Once solution apps are added to the Ansys App Portal, they are available on the **Application settings** dashboard (for portal administrators) and the **Applications** dashboard (for all users).  Navigate to `<http://portal.local.se>`_
+
+#. Open the Ansys App Portal at `<http://portal.local.se>`_.
+
+#. Log in with the default portal administrator credentials:
+
+   * **Username**: ``admin``
+   * **Password**: ``admin``
+
+   The portal opens to its **Home** page in a new browser tab.
+
+   .. image:: /_static/documenting/home_page_create_app.png
+      :width: 85%
+
+#. Click **Explore applications**
+
+   The **Applications** dashboard opens. As a portal administrator, you can see all the apps added to the portal.
+
+#. Click the card of the app you just added.
+
+   The app opens to its **Projects** dashboard, which shows all the projects created for the app. For a new app, this page is empty.
+
+#. To add a new project, click the :guilabel:`New project` button.
+
+#. On the **New project** dialog:
+
+   a. Enter the project name.
+   b. Enter a description of the project (optional).
+   c. Click :guilabel:`Create`.
+
+   The project opens to the first page of the app. From here, you can you can start the solution workflow.
+
+.. seealso::
+
+   For more information, see the Ansys App Portal documentation:
+
+   * `Portal administrator documentation <http://portal.local.se/api/documentation/admin/index.html>`_
+
+   * `Portal user documentation <http://portal.local.se/api/documentation/end-user/index.html>`_
+
+   Alternatively, you can click the *Help* icon in the portal header to view the documentation specific to your current login.
+
+   .. image:: /_static/documenting/portal_header_help_option.png
+      :width: 75%
+
+
+

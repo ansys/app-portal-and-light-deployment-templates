@@ -1,0 +1,334 @@
+.. _troubleshooting:
+
+Troubleshoot issues
+#####################
+
+This page provides guidance on how to resolve common issues you may encounter when using the platform.
+
+
+
+Platform services or portal is not accessible
+==============================================
+To resolve this issue follow below steps:
+
+1. Check network connectivity in WSL by running the following command in the WSL terminal:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         ping google.com
+
+   You should see a response similar to the following if network connectivity is available:
+
+   .. image:: /_static/documenting/check-network-wsl.png
+
+   If the network is not available, run the following commands on the host machine and then restart the host:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         wsl --shutdown
+         netsh winsock reset
+         netsh int ip reset all
+         netsh winhttp reset proxy
+         ipconfig /flushdns
+
+.. only:: internal
+
+   .. admonition:: For Ansys Internal testing:
+      :class: attention
+
+      On the Windows host machine, the ``PYANSYS_PRIVATE_PYPI_PAT`` environment variable must be set as described `here <https://dev-docs.solutions.ansys.com/solution_journey/journey_prepare/connect_to_private_pypi.html>`__. Note that this will not be needed for the production version of the platform.
+
+2. Check Port 80 availability
+
+   Port 80 must be free because the platform uses it to establish HTTP communication and serve web content.
+
+   Check for existing services occupying Port 80 by running the following command in the Windows PowerShell terminal:
+
+   .. tabs::
+
+      .. code-tab::
+         :caption: PowerShell
+
+         netstat -ano | findstr :80
+
+   This command displays information about the processes currently using port 80. The last column of the output is the **Process ID (PID)** of the process using that port.
+
+   .. image:: /_static/documenting/port_availability.png
+
+   Open the Windows **Task Manager**, go to the **Details** tab, and find the process with the corresponding PID.
+
+   This gives more information about the process, such as its name and resource usage.
+
+   Right-click each matching process with the corresponding PID (except the system process with PID = 4) and select **End task** to stop the process.
+
+
+3. Check the hosts file entries
+
+   .. note::
+
+     On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+   Ensure that the ``hosts`` file contains the correct mapping of the WSL Native IP address with platform services.
+
+   Example of correct mapping:
+    .. tabs::
+
+     .. code-tab:: none
+       :caption: hosts
+
+       <wsl_native_ip> keycloak.local.se
+       <wsl_native_ip> traefik.local.se
+       <wsl_native_ip> oauth.local.se
+       <wsl_native_ip> portal.local.se
+
+    .. tip::
+
+      To fetch the ``<wsl_native_ip>`` value, run this command in the WSL terminal:
+
+      .. tabs::
+
+        .. code-tab:: bash
+          :caption: WSL
+
+          ip addr show eth0
+
+   Ensure that there are no duplicate entries with different IP addresses in the ``hosts`` file for the platform services.
+
+   Example of incorrect duplicate entries:
+    .. tabs::
+
+     .. code-tab:: none
+       :caption: hosts
+
+       <wsl_native_ip> portal.local.se
+       <some_other_ip> portal.local.se
+
+User cannot log in to portal or receives an error when accessing portal UI
+===========================================================================
+In this case, the user can access the Ansys App Portal, but either cannot log in or receives an error when attempting to access the UI.
+
+To resolve this issue:
+
+#. Check the user registration details in the Keycloak Admin Console.
+
+#. Search for the user with the correct name (as specified in the :ref:`user registration form <register-new-user>`).
+
+#. In the user details, verify that the user is registered with the correct email domain name (as specified in the .env file).
+
+   .. note::
+    The email address for the user must have the email domain specified by the ``OP_EMAIL_DOMAIN`` environment variable in the ``.env`` file.
+
+   Example of invalid email domain:
+    In this example, the user **test1** is registered with a domain of `@test.com`. This is invalid because the platform was launched with a domain of `@example.com`.
+
+    .. image:: /_static/documenting/invalid-user-list.png
+     :align: center
+
+For more information, visit :ref:`keycloak`.
+
+
+Error occurs while starting platform services
+==============================================
+To resolve this issue:
+
+#. Check WSL Network connectivity by running this command:
+
+   .. tabs::
+
+     .. code-tab:: bash
+       :caption: WSL
+
+       ping -c 4 google.com
+
+#. If WSL network connectivity is not available, run these commands on the host machine and then restart the host:
+
+   .. tabs::
+
+     .. code-tab::
+       :caption: PowerShell
+
+       netsh winsock reset
+       netsh int ip reset all
+       netsh winhttp reset proxy
+       ipconfig /flushdns
+
+
+Projects of an app deployed on the portal are not accessible
+=============================================================
+To resolve this issue:
+
+#. Check for the app service entry in the ``hosts`` file of the host machine.
+
+   .. tip::
+
+     On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+
+#. Ensure that the ``hosts`` file contains the correct mapping of the WSL Native IP address with the app service.
+
+   Example of correct mapping:
+    .. code-block:: none
+      :caption: hosts
+
+       <wsl_native_ip> <application_service_name>.local.se
+
+    .. tip::
+
+      To fetch the ``<wsl_native_ip>`` value, run this command in the WSL terminal:
+
+      .. tabs::
+
+        .. code-tab:: bash
+          :caption: WSL
+
+          ip addr show eth0
+
+#. Ensure that there are no duplicate entries with different IP addresses in the ``hosts`` file for the app service.
+
+   Example of incorrect duplicate entries:
+    .. code-block:: none
+      :caption: hosts
+
+      <wsl_native_ip> <application_service_name>.local.se
+      <some_other_ip> <application_service_name>.local.se
+
+
+Cannot start optiSLang
+======================
+When starting optiSlang, the following error message is shown:
+
+``Cannot start optiSLang 242. Please contact your IT admin to make sure that optiSLang is reachable and try again.``
+
+The error is likely caused by the host machine being unable to reach the WSL Ubuntu distribution files system.
+
+One way to verify this is to open the WSL file system from Windows Explorer. If you get an error like the shown in the following image, it confirms that the host machine is not able to reach the WSL file system.
+
+.. image:: /_static/documenting/error_accessing_linux_file_system.png
+  :width: 75%
+
+To resolve this issue:
+
+#. Restart WSL by running this script:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+            wsl --shutdown
+            wsl
+
+#. Restart the platform as described in :ref:`Start up the platform <start-platform>`.
+
+
+Connection to the site is not secure
+=====================================
+When accessing the platform services, you may encounter a warning message that the connection to the site is not secure.
+
+To resolve this issue:
+
+Select an option to continue to site.
+
+.. image:: /_static/documenting/continue-site.png
+    :width: 50%
+
+Cannot connect to the Product instance Manager. Please contact your IT admin to make sure that this component is reachable
+===========================================================================================================================
+
+When executing the optiSLang workflow, the following error message is shown:
+
+``Cannot connect to the Product instance Manager. Please contact your IT admin to make sure that this component is reachable.``
+
+.. image:: /_static/documenting/pim_connection_error.png
+  :width: 30%
+
+To resolve this issue follow below steps:
+
+#. Go to the root directory of the platform and run the following command:
+#. Go to the Scripts directory and activate the virtual environment by running the following command:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: CMD
+
+         cd .\.venv\Scripts\
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: CMD
+
+         activate
+
+#. Stop only the pim by running the following command:
+ 
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: CMD
+
+         python single_node.py -s pim -a stop
+
+#. Again start only the pim by running the following command:
+ 
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: CMD
+
+         python single_node.py -s pim
+
+Cannot execute ``Deploy-Platform.ps1`` script
+==============================================
+When executing the ``Deploy-Platform.ps1`` script, you get the following error messages:
+
+Script is not digitally signed
+-------------------------------
+
+.. image:: /_static/documenting/signed_error.png
+   :align: center
+
+To resolve this issue, follow the next steps:
+
+#. Locate ``Ansys_App_Portal_and_Deployment_Templates.zip``
+
+#. Right click in the zip file and select `Properties`.
+
+#. Unblock the file and click in `Apply` and then `Ok`.
+
+   .. image:: /_static/documenting/unblock.png
+      :align: center
+
+#. Unzip the file into a new directory that is *not* the root directory.
+
+#. Continue the steps as  defined in :ref:`Deploy and start the platform <deploy>`.
+
+Corrupt virtual environment
+---------------------------
+
+Access denied to virtual environment activation script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: /_static/documenting/access-denied-to-venv-activation-script.png
+   :align: center
+
+Access denied to virtual environment files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: /_static/documenting/access-denied-to-venv-files.png
+   :align: center
+
+To resolve above issues, follow these steps:
+
+#. Close all running terminals where the platform script was launched.
+
+#. Navigate to the root directory of the platform and manually delete the ``.venv`` directory.
+
+#. Continue the steps as  defined in :ref:`Deploy and start the platform <deploy>`.

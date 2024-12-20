@@ -1,0 +1,51 @@
+Stop and start the platform once deployed
+#########################################
+
+This section provides instructions on how to stop and start the platform services once the platform has been deployed. It assumes that you have already deployed the platform as 
+indicated in :ref:`platform_Setup`.
+
+Stop the platform
+=================
+
+#. Open a Windows powershell terminal with **administrator privilege** and go to the directory ``deployment_scripts``:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+          
+
+#. Run the following command to stop the platform, including containerized services and desktop processes:
+   
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          .\Stop-Platform.ps1
+
+
+.. _start-platform:
+
+Start the platform
+==================
+
+#. Open a Windows powershell terminal with **administrator privilege** and go to the directory ``deployment_scripts``:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+
+#. Run the following command to start the platform:
+   
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          .\Start-Platform.ps1
