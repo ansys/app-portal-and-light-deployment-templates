@@ -1,0 +1,31 @@
+.. _stop-platform-vm:
+
+Stop the platform
+#################
+
+#. Open a Windows powershell terminal with **administrator privilege** and go to the directory ``deployment_scripts``:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+
+#. Run the following command to stop the platform:
+   
+   .. tabs::
+
+       .. code-tab::
+          :caption: powershell
+
+          .\Stop-Platform.ps1
+
+#. Once the platform is stopped, you need to open the WSL terminal and delete a specific docker volume created by the platform. Run the following command:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: WSL
+
+          docker volume rm platform_keycloak_data

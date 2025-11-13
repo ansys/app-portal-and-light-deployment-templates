@@ -1,0 +1,120 @@
+.. _new-users:
+
+Add users
+###########
+
+To work with solution apps and projects on the platform, a new user must first register as a platform user and then receive administrative approval as an Ansys App Portal™ user. This section provides instructions for each step of this process.
+
+.. _register-new-user:
+
+Register a new user
+===================
+A new user should perform these steps to request access to the platform.
+
+#. Open the portal at the following URL:
+
+   .. code::
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+#. Click :guilabel:`Sign in with Keycloak OIDC`.
+
+#. On the **Sign in to your account** dialog, click **Register**.
+
+   .. image:: /_static/documenting/sign-in.png
+      :width: 65%
+
+#. On the registration form, fill in the requested information.
+
+   .. note::
+
+      The email address must have the email domain specified while deploying the platform. An admin with access to the platform could get this value from the ``OP_EMAIL_DOMAIN`` value in the ``.env`` file, which is located at the root directory.
+
+#. Click :guilabel:`Register`.
+
+   On successful registration, the user is redirected to the following message on the portal. At this point, the user must wait until the registration request is approved by the portal administrator.
+
+The user may log out at this time.
+
+.. image:: /_static/documenting/access-pending.png
+   :width: 65%
+
+Approve the user registration
+===============================
+A portal administrator should perform these steps to approve the new user registration and provide access to the portal.
+
+#. Open the portal at the following URL:
+
+   .. code::
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+#. Click :guilabel:`Sign in with Keycloak OIDC`.
+
+#. Sign in with portal administrator credentials (``admin``/ ``admin`` by default).
+
+   The portal opens to its **Home** page.
+
+#. Click **Settings** in the navigation tree.
+
+   The **Settings** page opens.
+
+   .. image:: /_static/documenting/web_admin_settings_console.png
+      :width: 80%
+
+#. Click **Users** tab.
+
+   The **User settings** dashboard opens.
+
+   .. image:: /_static/documenting/web_admin_settings_users.png
+      :width: 80%
+
+
+
+#. On the card for the user to be approved, click the menu and select **Edit user**.
+
+   The **Edit** dialog opens.
+
+#. For **Select user role**, select an option:
+
+   * **Admin**: Users with this role can add solution apps and approve registrations/assign roles for new portal users.
+   * **User**: Users with this role can access applications and execute projects.
+
+     .. image:: /_static/documenting/edit_user_role.png
+        :width: 60%
+
+#. Click :guilabel:`Update user`.
+
+   .. image:: /_static/documenting/update_user_role.png
+      :width: 60%
+
+The registration is approved and the new user is added as a portal user with the specified user role.
+
+Verify user approval
+=====================
+The new user should perform these steps to verify that the registration has been approved.
+
+#. Open the portal at the following URL:
+
+   .. code::
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+#. Click :guilabel:`Sign in with Keycloak OIDC`.
+
+#. Sign in with the credentials used during registration.
+
+   The portal opens to its **Home** page if the registration has been approved by the portal administrator.
+
+.. seealso::
+
+   For more information, see the Ansys App Portal documentation:
+
+   * **Portal administrator documentation**: ``http://portal.<hostname>.<domain_name>:<tr_port>/api/documentation/admin/index.html``
+
+   * **Portal user documentation**: ``http://portal.<hostname>.<domain_name>:<tr_port>/api/documentation/end-user/index.html``
+
+   Alternatively, you can click the *Help* icon in the portal header to view the documentation specific to your current login.
+
+   .. image:: /_static/documenting/portal_header_help_option.png
+      :width: 75%

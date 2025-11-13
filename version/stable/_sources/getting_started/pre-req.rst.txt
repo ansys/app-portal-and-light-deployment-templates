@@ -1,0 +1,230 @@
+.. _prerequisites:
+
+(1) Verify prerequisites
+#########################
+
+
+Required access
+===============
+
+.. list-table::
+  :stub-columns: 1
+  :widths: 20 80
+
+  * - Internet access
+    - Specifically, you must have access to `Docker Hub <https://hub.docker.com/>`_ and `PyPI <https://pypi.org/>`_.
+  * - Administrative access
+    - You must have **administrative-level** access to set firewall rules.
+
+Required Hardware
+=================
+
+.. list-table::
+  :stub-columns: 1
+  :widths: 20 80
+
+  * - Memory
+    - Minimum 16 GB RAM.
+  * - Processor
+    - Minimum 4 cores.
+  * - Disk Space
+    - Enough disk space to accommodate the number and size of files expected to be transferred by users.
+
+Required software
+=================
+
+.. list-table::
+  :stub-columns: 1
+  :widths: 25 75
+
+  * - Operating systems:
+    - Windows 11 or Windows Server 2022
+
+  * - System Language
+    - English (United States)
+
+  * - Ansys products
+    - Ansys optiSLang **2024 R2 SP5** or **2025 R1 SP4** or **2025 R2 SP4**
+
+      .. only:: internal
+
+        .. admonition:: For Ansys Internal testing:
+          :class: attention
+
+          Make sure that you have installed latest v242 certified version from `artifactory <https://eu.artifactory.ansys.com/ui/repos/tree/General/v242_Certified>`_.
+
+Third-party products
+====================
+
+.. list-table::
+  :stub-columns: 1
+  :widths: 25 75
+
+  * - Python
+    - 3.9 to 3.11, with ``packaging``, ``toml`` and ``certifi`` dependencies installed.
+
+      The platform automatically uses the Python interpreter included within the Ansys installation.
+      If there is no Python within the Ansys installation, the platform can use an alternative Python interpreter.
+
+
+  * - WSL 2
+    - Windows Subsystem for Linux (WSL) is a feature of Windows that allows you to run a Linux
+      environment on your Windows machine, without the need for a separate virtual machine or dual booting. It is needed to host the app platform's services, as they run in Linux containers. More information about WSL `here <https://learn.microsoft.com/en-us/windows/wsl/about>`__.
+
+      To install it, just run the following in **administrator mode** and restart the machine:
+
+      .. tabs::
+
+       .. code-tab:: bash
+           :caption: PowerShell
+
+           wsl --install --no-distribution
+           Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux"
+
+
+      .. note::
+
+         If you have WSL 1 installed, you can upgrade to WSL 2 by running the following command in **administrator mode**:
+
+         .. code-block:: bash
+
+            wsl --set-default-version 2
+
+      .. attention::
+
+         If you have docker desktop installed and WSL integration is enabled, you need to disable it before installing the platform, as it will conflict with the platform's WSL integration.
+         You can disable it by going to Docker Desktop settings and un-checking the WSL integration option for your distributions.
+
+
+  * - Linux distribution in WSL
+    - The platform needs a Linux distribution to be executed. In order to install it, just run the
+      following in **administrator mode**:
+
+      .. tabs::
+
+       .. code-tab:: bash
+           :caption: PowerShell
+
+           wsl --install -d Ubuntu-22.04
+
+  * - WSL System Resource Allocation
+    - The WSL environment must meet the following recommended requirements:
+
+      - **Memory:** Minimum 8 GB RAM (Minimum 50% of total RAM of the host machine)
+      - **Processor:** Minimum 4 CPU cores
+
+      **Follow the steps below to check and update allocated resources to WSL:**
+
+      1. **Check Current Allocation:**
+         Run the following commands inside WSL to verify allocated memory and CPU cores:
+
+         .. code-block:: bash
+
+            cat /proc/meminfo | grep MemTotal  # Check total allocated memory
+
+         .. code-block:: bash
+
+            nproc  # Check the number of allocated processor cores
+
+      2. **Update Resource Allocation:**
+         If the required specifications are not met, update the `.wslconfig` file:
+
+         Default location of `.wslconfig` file:
+         ```
+         C:\Users\<YourUsername>\.wslconfig
+         ```
+
+         If the file does not exist, create it. If it exists, update the configuration as needed:
+
+         .. code-block:: ini
+
+            [wsl2]
+            memory=8GB   # Allocates 8GB RAM (modify as needed)
+            processors=4  # Allocates 4 CPU cores
+
+      3. **Apply Changes:**
+         To apply the updated configuration, shut down WSL and restart it using the following PowerShell command:
+
+         .. code-tab:: bash
+             :caption: PowerShell
+
+             wsl --shutdown
+
+  * - Docker, Docker Compose
+    - 2.17.0 or greater
+
+      Docker is a platform for developing, shipping, and running applications in isolated containers, and Docker Compose allows you to define and manage multi-container applications with a single configuration file.
+
+  * -
+    - To install Docker, follow these steps:
+
+      #. Update the package list.
+
+         .. code-block:: bash
+
+            sudo apt-get update
+
+      #. Install required packages.
+
+         .. code-block:: bash
+
+            sudo apt-get install ca-certificates curl
+
+      #. Create the keyring directory.
+
+         .. code-block:: bash
+
+            sudo install -m 0755 -d /etc/apt/keyrings
+
+      #. Add the Docker GPG key.
+
+         .. code-block:: bash
+
+            sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+      #. Change the keyring file permissions.
+
+         .. code-block:: bash
+
+            sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+      #. Add the Docker repository.
+
+         .. code-block:: bash
+
+            echo \
+                "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
+                https://download.docker.com/linux/ubuntu \
+                $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+                sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+      #. Update the package list.
+
+         .. code-block:: bash
+
+            sudo apt-get update
+
+      #. Install Docker packages.
+
+         .. code-block:: bash
+
+            sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+      #. Verify Docker installation.
+
+         .. code-block:: bash
+
+            sudo docker run hello-world
+
+      #. Configure user permissions.
+
+         .. code-block:: bash
+
+            sudo usermod -aG docker $USER
+
+      #. Restart WSL.
+
+         .. code-block:: bash
+
+            sudo reboot
+

@@ -1,0 +1,72 @@
+.. _add-remove-app-access:
+
+Add or remove app access
+#########################
+
+To add or remove access to an application for a portal user, you must be logged in as a portal administrator.
+The following steps describe how to add or remove access to an application for a portal user.
+
+.. note ::
+
+   The portal user must already be registered with the portal and have an active account. By default, the portal users do not have access to any applications.
+
+#. Launch the portal by entering the following URL in a browser window:
+
+   .. code:: none
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+#. Sign in using your portal administrator credentials. By default, these are:
+
+   * **Username:** ``admin``
+   * **Password:** ``admin``
+
+   The portal opens to its **Home** page.
+
+#. Go to the **Settings** page by clicking the **Settings** link in the navigation tree.
+
+   The **Settings** page opens.
+
+   .. image:: /_static/documenting/web_admin_settings_console.png
+      :width: 65%
+
+#. Click on the Edit menu icon (three vertical dots) on the card for the application for which you want to add or remove user access, and select **Manage Access**.
+
+   The **Manage Access** dialog opens.
+
+   .. image:: /_static/documenting/edit_manage_access.png
+      :width: 60%
+
+#. In the **Manage Access** dialog, you can see the **Users** and **Groups** sections.
+
+   * To add a user, select the user from "Select users for access" dropdown.
+   * Select the level of the access you want to grant the user from the **Access level** dropdown. The available access levels are:
+
+     * **Editor**: The user can Edit the application but delete or provide access to other users.
+     * **Owner**: The user can Edit the application, delete it, and provide access to other users.
+   * Click the **Submit** button.
+     The user is added to the list of users with access to the application.
+
+   .. image:: /_static/documenting/user-manage-access.png
+      :width: 60%
+
+   * To remove a user, Open the **Manage Access** dialog and click the **x** button next to the user's name and click the **Submit** button.
+   * Similarly access to application can be managed for groups by selecting the group from "Select groups for access" dropdown and clicking the **Submit** button to add or clicking the **x** button next to the group's name to remove access.
+
+.. note ::
+    For managing groups see the help documentation for the Ansys App Portal from the help menu in the portal or at the following URL:
+
+    **Manage groups**: ``http://portal.<hostname>.<domain_name>:<tr_port>/api/documentation/admin/admin_guide/admin_groups/index.html``
+
+.. seealso::
+
+   For more information, see the Ansys App Portal documentation:
+
+   * **Portal administrator documentation**: ``http://portal.<hostname>.<domain_name>:<tr_port>/api/documentation/admin/index.html``
+
+   * **Portal user documentation**: ``http://portal.<hostname>.<domain_name>:<tr_port>/api/documentation/end-user/index.html``
+
+   Alternatively, you can click the *Help* icon in the portal header to view the documentation specific to your current login.
+
+   .. image:: /_static/documenting/portal-help-long.png
+      :width: 90%

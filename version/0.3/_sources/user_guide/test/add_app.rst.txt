@@ -1,0 +1,128 @@
+
+.. _add-app:
+
+Add an app to the portal
+##########################
+
+To add a new Ansys Web App (AWA) to the Ansys App Portal™, you must upload the corresponding optiSLang application (``.awa``) file. 
+You can do this via the user interface of the portal.
+
+.. note::
+   The following steps assume that you have an optiSLang ``.awa`` file available.
+   You can also download the sample ``.awa`` file from :download:`here </_static/assets/oscillator-calibration.awa>`.
+
+
+Upload AWA file from the portal
+================================
+
+1. Open the portal at the following URL:
+
+   .. code::
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+   .. note::
+
+      If the browser displays a warning about an insecure connection, click :guilabel:`Continue to site`.
+
+      .. image:: /_static/documenting/continue-site.png
+          :width: 50%
+
+2. Sign in with the portal administrator credentials (``admin``/ ``admin`` by default).
+
+   The portal opens to its **Home** page in a new browser tab.
+
+   .. image:: /_static/documenting/home_page_create_app.png
+      :width: 85%
+
+3. Click :guilabel:`Create application`.
+
+   The **Create application** dialog opens.
+
+4. On the **URL-based** tab, expand **Create application by uploading .awa file**.
+
+   .. image:: /_static/documenting/upload_awa_option.png
+      :width: 85%
+
+5. Click :guilabel:`Upload AWA file`, then find and open the ``.awa`` file for the solution you want to add.
+
+   If the file is uploaded successfully, the file name is displayed in green.
+
+   .. image:: /_static/documenting/upload_awa_sucess.png
+      :width: 85%
+
+6. Click :guilabel:`Create application`.
+
+   If the request to add the app was processed successfully, the following confirmation message is shown, otherwise a failure error message is displayed.
+
+   .. image:: /_static/documenting/app_creation_sucess.png
+      :width: 70%
+
+   .. warning::
+
+      If the app already exists on the portal, a **Conflict** validation message is shown, asking if you want to override the existing app. For more information on overrides, see :ref:`app-versions-on-portal` before proceeding.
+
+7. Click :guilabel:`View application`.
+
+   You are returned to the **Application settings** dashboard, an administrative page which shows all the apps added to the portal. The new app is be visible in a few seconds and can be managed from here by portal administrators.
+
+   .. tip::
+
+      It takes some time to add an app to the portal, so you may wish to refresh the dashboard periodically during the process.
+
+      .. image:: /_static/documenting/app_refresh.png
+         :width: 60%
+         :align: center
+
+8. To add a new project, click :guilabel:`New project`.
+
+9. On the **New project** dialog:
+
+   a. Enter the project name.
+   b. Enter a description of the project (optional).
+   c. Click :guilabel:`Create`.
+
+   The project opens to the first page of the app. From here, you can you can start the solution workflow.
+
+
+.. _app-versions-on-portal:
+
+App versioning on the portal
+==============================
+Solution apps are defined using the combination of the **name** and **version** values specified in the ``pyproject.toml`` file of the app. This file can be obtained by renaming the ``.awa`` file to a ``.zip`` file and extracting its content.
+
+Possibles scenarios when adding an app to the portal are as follows:
+
+* **Scenario 1**: The app has the same name but a different version than an existing app. The app is created as a different app.
+
+  .. image:: /_static/documenting/app_duplicate.png
+     :width: 60%
+
+
+* **Scenario 2**: The app has the same name and version as an existing app. A **Conflict** dialog is displayed, asking whether you want override the existing app.
+
+  .. image:: /_static/documenting/override_app.png
+     :width: 60%
+
+If you click the :guilabel:`Override` button, the new app replaces the existing one, while preserving all projects created with the previous app.
+
+.. note::
+   While the app is being overridden, it becomes unavailable for a short period of time.
+   In the portal, the app is marked as **deactive** until the new app is fully available.
+   You can see the status of the app by refreshing the **Application settings** dashboard.
+
+   .. image:: /_static/documenting/deactive_app.png
+      :width: 60%
+
+.. seealso::
+
+   For more information, see the Ansys App Portal documentation:
+
+   * **Portal administrator documentation**: ``http://portal.<hostname>.<domain_name>:<tr_port>/api/documentation/admin/index.html``
+
+   * **Portal user documentation**: ``http://portal.<hostname>.<domain_name>:<tr_port>/api/documentation/end-user/index.html``
+
+   Alternatively, you can click the *Help* icon in the portal header to view the documentation specific to your current login.
+
+   .. image:: /_static/documenting/portal_header_help_option.png
+      :width: 75%

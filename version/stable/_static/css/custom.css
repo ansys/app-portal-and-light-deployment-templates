@@ -1,0 +1,93 @@
+/* # ©2025, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited. */
+/* Text roles */
+
+.bold {
+    font-weight: bold
+}
+
+.ansys-lead {
+    color: #373A36;
+}
+
+.ansys-steel {
+    color: #898A8D;
+}
+
+.ansys-silver {
+    color: #D9D8D6;
+}
+
+.ansys-gold {
+    color: #FFB71B;
+}
+
+.ansys-dark-gold {
+    color: #dfa21e;
+}
+
+/* Standard colors */
+
+.black {
+    color: black;
+}
+
+.gray {
+    color: gray;
+}
+
+.grey {
+    color: gray;
+}
+
+.silver {
+    color: silver;
+}
+
+.white {
+    color: white;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+
+/* Text roles */
+
+.small {
+    font-size: small;
+}
+
+.large {
+    font-size: large;
+}
+
+.largebold {
+    font-size: large;
+    font-weight: bold
+}
+
+
+/* Page footer */
+
+.footer {
+    bottom:0;
+    width:100%;
+    /* border-top: solid #e4e1e1;
+    border-top-width:thin; */
+    font-size:14px;
+    font-style: italic;
+    color: #898A8D;
+    margin: auto;
+    text-align: center;
+}
+font-weight: }
+

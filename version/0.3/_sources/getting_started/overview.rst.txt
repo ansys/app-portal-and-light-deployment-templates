@@ -1,0 +1,31 @@
+.. _overview:
+
+Platform overview
+##################
+
+
+Services
+=========
+
+The following services are included in the App Portal and Distributed Deployment Templates™ platform:
+
+Ansys App Portal™:
+ User interface for managing solution apps and the projects created for them.
+
+Product Instance Manager™  (PIM):
+ Manages the starting and stopping of the Ansys optiSLang® product.
+
+Authentication services:
+ Used to authenticate users and provide access to platform services.
+
+Databases:
+ Used to store and manage data in the Ansys App Portal and in each solution app.
+
+API Gateway:
+ Provides a single entry point for managing, routing, and securing API requests between clients and backend services.
+
+App service:
+ Used to manage containerized applications in the platform.
+
+App adapter service:
+ Used to include the necessary Dockerfiles and Docker Compose files for running applications.

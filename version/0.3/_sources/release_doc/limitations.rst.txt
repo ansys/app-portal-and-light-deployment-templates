@@ -1,0 +1,36 @@
+.. _known_limitations:
+
+Known limitations
+=================
+
+This section lists the known limitations for the Ansys App Portal and Light Deployment Templates™ platform.
+
+Operating System Support:
+ The platform has been fully tested on Windows 11 and Windows Server 2022 with WSL Ubuntu-22.04 distribution. Due to the containerized nature of the platform,
+ it is expected to work on other Linux distributions as well. However, the platform has not been tested on other operating systems.
+
+Port range variability for optiSLang server:
+ The range of ports where the optiSLang wrapper server usually runs is within the **30000-65000** range. However, this range can vary from system to system, so it may be necessary to adjust the firewall settings accordingly.
+
+Unable to delete edited apps:
+ Editing the name and version of an app before deleting it is not recommended, as the deletion might fail. Deletion of an app is only possible with its original name and version.
+
+Deployment scripts limitations:
+    * The deployment script ``Deploy-Platform.ps1`` is not yet capable to handle a network deployment. For this configuration, manual steps are needed.
+    * ``Start-Platform.ps1`` and ``Stop-Platform.ps1`` are designed to start/stop **all the platform services and deployed apps** at once.
+
+Result Files deleted in 24R2:
+ Result files are deleted once optiSLang instance or the operative system are rebooted. To avoid this, either download the results once the analysis is completed or upgrade the optiSLang web app to 25R1.
+
+Unable to execute optiSLang workflow when Ansys optiSLang is installed on non default path (other than ``C:\Program Files\Ansys Inc\``):
+ The applications may not be able to execute optiSLang workflow when Ansys optiSLang is installed on a non-default path. To resolve this issue, install Ansys optiSLang on the default path.
+
+.. only:: internal
+
+    .. admonition:: Ansys Internal content
+        :class: attention
+
+        This information is for Ansys Internal users.
+
+        For a full list of open bugs, see the ``saf-light-one-node`` repo's `Issues <https://github.com/ansys-internal/saf-light-one-node/issues?q=is%3Aissue+is%3Aopen+label%3Abug>`_ page.
+

@@ -1,0 +1,52 @@
+.. _use-platform:
+
+Use the platform
+###################
+
+This section provides instructions for testing a deployment of the Ansys App Portal and One Node Deployment Templates™ platform.
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: :ref:`add-app`
+      :link-type: doc
+      :link: add_app
+
+      Add solution apps to the the Ansys App Portal™ for your platform deployment.
+
+
+   .. grid-item-card:: :ref:`new-users`
+      :link-type: doc
+      :link: new_user
+
+      Register new users for the platform and approve the registration to provide access to the Ansys App Portal.
+
+   .. grid-item-card:: :ref:`add-remove-app-access`
+      :link-type: doc
+      :link: add_remove_app_access
+
+      Add or remove access to an application for a portal user.
+
+   .. grid-item-card:: :ref:`keycloak`
+      :link-type: doc
+      :link: keycloak
+
+      View the list of registered users and update information for individual user accounts.
+
+   .. grid-item-card:: :ref:`keycloak-manage-admin`
+      :link-type: doc
+      :link: keycloak_manage_admin
+
+      Change the default password for Keycloak administrative users.
+
+.. toctree::
+    :maxdepth: 3
+    :hidden:
+
+    add_app
+    new_user
+    add_remove_app_access
+    keycloak
+    keycloak_manage_admin
+
+

@@ -1,0 +1,68 @@
+.. _access-platform:
+
+Access the platform
+######################
+
+A user is able to connect to the platform in either of the following ways: by accessing it from a local deployment or by accessing from a remote deployment or using the Remote Desktop Connection application.
+
+
+Access from a local deployment
+==============================
+
+The local deployment of the platform is done on the same machine where the user is accessing the platform.
+
+#. Open a local browser and go to the following URL:
+
+   .. code::
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+#. If the browser displays a warning about an insecure connection, click :guilabel:`Continue to site`.
+#. Log in with the credentials provided during the deployment (``admin/admin`` by default).
+
+Access from a remote deployment
+===============================
+
+The remote deployment of the platform is done on a different machine than the one from where the user is accessing the platform.
+
+#. Add or update the following entries in your local machine's ``hosts`` file. Note that this is done only the first time the platform has been deployed.
+
+   .. note::
+      For accessing the platform deployed on the remote machine, your IT administrator should provide you with the values noted in the previous section.
+
+      * The values of ``<hostname>`` and ``<domain_name>`` can be found in the ``.env`` file located at the root directory.
+      * The IP address ``<vm_ip>`` can be found by running the command ``ipconfig`` in the terminal of the machine where the platform is deployed.
+
+   .. code-block::
+      :caption: hosts
+
+      <vm_ip> keycloak.<hostname>.<domain_name>
+      <vm_ip> oauth.<hostname>.<domain_name>
+      <vm_ip> portal.<hostname>.<domain_name>
+      <vm_ip> traefik.<hostname>.<domain_name>
+      <vm_ip> solutions.<hostname>.<domain_name>
+
+#. Open a local browser and go to the following URL:
+
+   .. code::
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+#. If the browser displays a warning about an insecure connection, click :guilabel:`Continue to site`.
+#. Log in with the credentials provided during the deployment (``admin/admin`` by default).
+
+
+Access through a Remote Desktop Connection
+===========================================
+
+#. Open the Remote Desktop Connection application on your local machine.
+#. Log in to the machine where the platform is deployed.
+#. Open a browser and go to the following URL:
+
+   .. code::
+
+      http://portal.<hostname>.<domain_name>:<tr_port>
+
+#. If the browser displays a warning about an insecure connection, click :guilabel:`Continue to site`.
+#. Log in with the credentials (``admin/admin`` by default).
+

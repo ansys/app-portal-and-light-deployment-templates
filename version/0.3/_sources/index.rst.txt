@@ -1,0 +1,117 @@
+##########################################################
+Ansys App Portal and Light Deployment Templates |version|
+##########################################################
+
+.. role:: large
+.. role:: largebold
+
+:large:`Welcome to the documentation for the` :largebold:`Ansys App Portal and Light Deployment Templates™` :large:`platform.`
+
+
+
+.. only:: internal
+
+   .. list-table::
+      :stub-columns: 1
+      :widths: 25 75
+
+      * - Project name:
+        - ``saf-light-one-node``
+      * - Package name:
+        - ``ansys-app-portal-and-light-deployment-templates``
+      * - Supported Python versions:
+        - 3.10 to 3.11
+      * - Supported operating systems:
+        - Windows 11 or Windows Server 2022
+
+
+The :program:`Ansys App Portal and Light Deployment Templates™` platform provides all the containerized services needed to leverage single-node deployments for the execution of **Ansys Web Applications** (AWA).
+It is compatible with apps created with Ansys optiSLang® 24R2 or later.
+
+.. only:: internal
+
+   It is one of the packages that are delivered as part of the Ansys Solution Applications Framework™ (SAF) initiative.
+
+To learn more about the platform and how to configure, deploy, and run it, review the following documentation:
+
+
+.. grid:: 2
+   :gutter: 4
+
+   .. grid-item-card:: :ref:`ref-getting-started`
+      :link-type: doc
+      :link: getting_started/index
+      :shadow: lg
+
+      Learn about included services, verify prerequisites, and do the initial deployment of the platform.
+
+   .. grid-item-card:: :ref:`ref_user_guide_index`
+      :link-type: doc
+      :link: user_guide/index
+      :shadow: lg
+
+      Test features, troubleshoot common issues, and work with the platform once you've deployed it.
+
+.. card:: :ref:`ref_release_notes`
+   :margin: 5 0 0 0
+
+   Learn about the new features, enhancements, and bug fixes in the latest release of the platform.
+
+   .. grid:: 2
+      :gutter: 4
+
+      .. grid-item-card:: :ref:`changelog`
+         :link-type: doc
+         :link: release_doc/changelog
+         :shadow: lg
+
+         Check out the latest release notes for the platform to learn about new features, enhancements, and bug fixes.
+
+      .. grid-item-card:: :ref:`known_limitations`
+         :link-type: doc
+         :link: release_doc/limitations
+         :shadow: lg
+
+         Review the known issues and limitations in the platform to avoid potential problems during deployment and usage.
+
+.. only:: internal
+
+   .. card:: Ansys Internal documentation
+      :margin: 5 0 0 0
+
+      To learn how to contribute to the platform project, review the following section:
+
+      .. grid:: 3
+         :gutter: 4
+
+         .. grid-item-card:: Contributors
+            :link: https://cautious-barnacle-lnoez13.pages.github.io/version/stable/contributors/index.html
+            :shadow: lg
+
+            Learn about the Ansys Internal release process and how to test an individual containerized solution by itself.
+
+.. only:: internal
+
+   .. seealso::
+
+      * For more information about SAF, see the `SAF general presentations <https://ansys.sharepoint.com/:f:/r/sites/SolutionApplicationFrameworkSAF/Shared%20Documents/General/Documentation/SAF%20General%20presentations>`__ available on the Solution Applications Framework SharePoint site.
+
+      * For information on general solution-development topics, see the `Ansys Solution developer's guide <https://dev-docs.solutions.ansys.com/>`_. It provides guidance on framework-agnostic tasks such as how to set up, test, document, and build a UI for your solution app.
+
+
+
+
+.. include:: toc_tree.rst
+
+
+.. Indices and tables
+.. ==================
+.. * :ref:`genindex`
+.. * :ref:`search`
+.. * :ref:`modindex`
+
+
+.. |GH-CI| image:: https://github.com/ansys-internal/solutions-saf-doc/actions/workflows/ci_cd.yml/badge.svg
+   :target: https://github.com/ansys-internal/solutions-saf-doc/actions/workflows/ci_cd.yml
+   :alt: GH-CI
+

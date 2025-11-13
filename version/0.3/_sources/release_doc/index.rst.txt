@@ -1,0 +1,31 @@
+.. _ref_release_notes:
+
+Release documentation
+######################
+
+Review the following release documentation to learn what's in the latest release of the Ansys App Portal and Light Deployment Templates™ platform.
+
+.. grid:: 2
+   :gutter: 4
+
+   .. grid-item-card:: Release notes
+      :link-type: doc
+      :link: changelog
+      :shadow: lg
+
+      Check out the list of new features, enhancements, and bug fixes delivered in the latest release of the platform.
+
+   .. grid-item-card:: Known limitations
+      :link-type: doc
+      :link: limitations
+      :shadow: lg
+
+      Review known limitations to avoid potential issues during platform deployment and usage.
+
+
+.. toctree::
+  :hidden:
+  :maxdepth: 3
+
+  changelog
+  limitations

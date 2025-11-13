@@ -1,0 +1,48 @@
+.. _ref-getting-started:
+
+Getting started
+===============
+
+This section gives an overview and provides instructions for your initial deployment of the Ansys App Portal and One Node Deployment Templates™ platform.
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: :ref:`overview`
+      :link-type: doc
+      :link: overview
+
+      Learn about the services included in the platform.
+
+Be sure to follow these steps in order:
+
+.. grid:: 1
+   :gutter: 4
+
+
+   .. grid-item-card:: :ref:`prerequisites`
+      :link-type: doc
+      :link: pre-req
+
+      Make sure you fulfill all the requirements for deploying and using the platform.
+
+   .. grid-item-card:: :ref:`platform_setup`
+      :link-type: doc
+      :link: platform-setup
+
+      Download the platform package and then deploy and start it.
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   overview
+   pre-req
+   platform-setup
+
+
+
+
+
+

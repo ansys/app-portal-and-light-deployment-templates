@@ -1,0 +1,50 @@
+.. _stop-start-platform:
+
+Stop and start the platform
+#############################
+
+Stop the platform
+=================
+
+#. Run a Windows PowerShell terminal **as administrator** and go to the directory ``deployment_scripts``:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: PowerShell
+
+          cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+
+
+#. Run the following command to stop the platform, including containerized services and desktop processes:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: PowerShell
+
+          .\Stop-Platform.ps1
+
+
+.. _start-platform:
+
+Start the platform
+==================
+
+#. Run a Windows PowerShell terminal **as administrator** and go to the directory ``deployment_scripts``:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: PowerShell
+
+          cd .\Ansys_App_Portal_and_Deployment_Templates\deployment_scripts
+
+#. Run the following command to start the platform:
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: PowerShell
+
+          .\Start-Platform.ps1

@@ -1,0 +1,74 @@
+.. _ref_user_guide_index:
+
+User guide
+###########
+
+.. important::
+
+   Before using the platform, make sure that you have completed all the steps in :ref:`ref-getting-started`.
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: Add an app to the App Portal
+      :link-type: doc
+      :link: add_app
+
+      Add apps to the platform.
+   
+   .. grid-item-card:: Interact with apps in the App Portal
+      :link-type: doc
+      :link: interact_app
+
+      Interact with solution apps.
+
+   .. grid-item-card:: Add users
+      :link-type: doc
+      :link: new_user
+
+      Register new users for the platform and approve the registration to provide access to the Ansys App Portal.
+
+   .. grid-item-card:: Manage users
+      :link-type: doc
+      :link: keycloak
+
+      View the list registered users and update information for individual user accounts.
+   
+   .. grid-item-card:: Stop and Start the Platform once deployed
+      :link-type: doc
+      :link: stop_start_services
+
+      Start and stop the Platform services once it has already been deployed once.
+   
+   .. grid-item-card:: Troubleshoot issues
+      :link-type: doc
+      :link: troubleshooting
+
+      Get guidance on how to resolve common issues you may encounter while using the platform.
+
+   .. grid-item-card:: Known limitations
+      :link-type: doc
+      :link: limitations
+
+      Review a list of the limitations known at the time of for the current release of the platform.
+   
+   .. grid-item-card:: Uninstalling the App Platform
+      :link-type: doc
+      :link: uninstalling
+
+      Learn how to uninstall the platform.
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   add_app
+   interact_app
+   new_user
+   keycloak
+   stop_start_services
+   configure-env
+   troubleshooting
+   limitations
+   uninstalling

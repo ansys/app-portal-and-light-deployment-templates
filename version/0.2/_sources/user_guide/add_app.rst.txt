@@ -1,0 +1,167 @@
+
+.. _ref-testing-add-app:
+
+Add an app to the portal
+##########################
+
+To add a new Ansys Web App (AWA) to the Ansys App Portal, you must upload the corresponding optiSLang application (``.awa``) file. You can do this either via the user interface of the portal (recommended) or by placing it in the solution directory manually.
+
+.. note::
+  Following steps assume that you have an optiSLang ``.awa`` file available.
+  You can also download the sample *.awa* file from :download:`here </_static/assets/oscillator-calibration.awa>`.
+
+.. note::
+  The app deployment on the Ansys App Portal can take 5-10 minutes or more depending on the size of the app, network speed. 
+  **During this time, the app is not available for use.**
+
+Upload AWA file from the portal
+================================
+.. admonition:: Recommended
+   :class: important
+
+   This is the preferred approach for adding solution apps to the Ansys App Portal.
+
+You can add a URL-based solution app to the Ansys App Portal by uploading an ``.awa`` file from the portal user interface.
+
+1. Open the Ansys App Portal at `<http://portal.local.se>`_.
+
+.. note::
+
+   If you get an error or warning message in browser that *The connection to portal.local.se is not secure*, select an option to continue to site. For any such subsequent warnings, select the same option to continue to the site.
+
+   .. image:: /_static/documenting/continue-site.png
+       :width: 50%
+
+2. Sign in with the default portal administrator credentials:
+
+   * **Username**: ``admin``
+   * **Password**: ``admin``
+
+   .. note::
+      If you have changed the value of ``OP_EMAIL_DOMAIN`` inside the ``.env`` file before instantiating the platform, the default portal administrator credentials do not work. To log in with these credentials, you need to change their email domain, as follows:
+
+      #. Log in to the Keycloak Admin Console at http://keycloak.local.se:8011/auth/ (or whatever URL is specified by ``KC_ADMIN_URL``).
+
+      #. Change the email domain to match the one specified by ``OP_EMAIL_DOMAIN``.
+
+      For more information, see :ref:`keycloak`.
+
+   The portal opens to its **Home** page in a new browser tab.
+
+   .. image:: /_static/documenting/home_page_create_app.png
+      :width: 85%
+
+3. Click the :guilabel:`Create application` button.
+
+   The **Create application** dialog opens.
+
+4. On the **URL-based** tab, expand **Create application by uploading .awa file**.
+
+   .. image:: /_static/documenting/upload_awa_option.png
+      :width: 85%
+
+5. Click the :guilabel:`Upload AWA file` button, then find and open the ``.awa`` file for the solution you want to add.
+
+   If the file is uploaded successfully, the file name is displayed in green.
+
+   .. image:: /_static/documenting/upload_awa_sucess.png
+      :width: 85%
+
+6. Click the :guilabel:`Create application` button.
+
+   If the app is added successfully, the following **Success** confirmation message is shown.
+
+   .. image:: /_static/documenting/app_creation_sucess.png
+      :width: 70%
+
+
+   If the uploaded .awa is not compatible with the platform, failure error message is displayed.
+
+
+   .. warning::
+
+      If the app already exists on the portal, a **Conflict** validation message is shown, asking if you want to override the existing app. For more information on overrides, see :ref:`app-versions-on-portal` before proceeding.
+
+7. On the **Success** message, click the :guilabel:`View application` button.
+
+   You are returned to the **Application settings** dashboard, an administrative page which shows all the apps added to the portal. The new app is visible and can be managed from here by portal administrators.
+
+   .. tip::
+
+      It takes some time to add an app to the portal, so you may wish to refresh the dashboard periodically during the process.
+
+      .. image:: /_static/documenting/app_refresh.png
+         :width: 60%
+         :align: center
+
+Upload AWA file from solution directory
+========================================
+
+You can upload a solution app to the Ansys App Portal by placing the corresponding ``.awa`` file in the solution directory.
+
+The :dfn:`solution directory` is the directory specified by the ``SOLUTIONS_DIRECTORY_PATH`` environment variable. (For more information about this environment variable, see :ref:`platform_Setup`.)
+
+For example, the following environment setup has the environment variable pointing to a directory on the ``D:\\`` drive:
+
+.. code-block::
+   :caption: .env
+
+   SOLUTIONS_DIRECTORY_PATH=D:\\solution_folder\\new_awa
+
+The directory structure for this example should look like this:
+
+.. image:: /_static/documenting/awa_directory.png
+   :width: 70%
+
+To upload an ``.awa`` file, just place the file in the ``SOLUTIONS_DIRECTORY_PATH`` directory using a drag-and-drop or copy-paste operation. Once the file is uploaded, the platform detects it and starts adding it to the portal.
+
+.. attention::
+   While the ``.awa`` file is being processed by the platform, close or minimize the File Explorer window of the ``SOLUTIONS_DIRECTORY_PATH`` directory and avoid interacting with the directory.
+
+As the platform processes the ``.awa`` file, you can watch the execution logs  in a terminal for the activated virtual environment. Examples of typical processing logs are shown in the following images.
+
+* The following two log lines indicate that:
+
+  * The platform has detected the ``.awa`` file and is processing it to be added to the portal
+  * The platform is generating the app.
+
+  .. image:: /_static/documenting/awa_processing_logs.png
+     :align: center
+     :width: 100%
+
+* The following log line indicates that the platform has finished processing the ``.awa`` file and has added the app successfully.
+
+  .. image:: /_static/documenting/awa_solutions_up.png
+     :align: center
+     :width: 100%
+
+
+.. _app-versions-on-portal:
+
+App versioning on the portal
+==============================
+Solution apps are added to the Ansys App Portal and defined using the combination of  the ``name`` + ``version`` values specified in the ``pyproject.toml`` file for the app---**NOT** using the file name of the uploaded ``.awa`` file.
+
+Duplicate ``name``
+-------------------
+
+If you upload an ``.awa`` file that has the same ``name`` value but a different ``version`` value as an app that exists on the portal, it is created as a different application and displayed on a separate card or row (though with the same name) on the **Application settings** and **Applications** dashboards.
+
+.. image:: /_static/documenting/app_duplicate.png
+ :width: 60%
+
+Duplicate ``name`` and ``version``
+-----------------------------------
+If you upload an ``.awa`` file that has the same ``name`` and ``version`` values as an app that exists on the portal, it fails validation and the **Conflict** dialog is displayed, asking whether you want override the existing app.
+
+.. image:: /_static/documenting/override_app.png
+ :width: 60%
+
+If you click the :guilabel:`Override` button, the new ``.awa`` file being uploaded replaces the existing ``.awa`` file for the app, while preserving all projects created with the previous app.
+
+.. note::
+  The override process can take can take 5-10 minutes.
+
+
+
+

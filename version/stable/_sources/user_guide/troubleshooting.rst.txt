@@ -1,0 +1,472 @@
+.. _troubleshooting:
+
+Troubleshoot issues
+#####################
+
+Learn how to resolve common errors or issues you may encounter when using the Ansys App Portal and One Node Deployment Templates™ platform.
+
+
+Unable to login to the Ansys App Portal due to constant redirection to the login page
+======================================================================================
+
+To resolve this issue:
+
+#. Close all browser tabs and windows.
+#. Open a new browser window and access the Ansys App Portal again.
+#. If the issue persists, clear the browser cache and cookies, close all browser tabs and windows and then try to access the Ansys App Portal again.
+
+
+Platform services or portal is not accessible
+==============================================
+
+To resolve this issue:
+
+#. Check network connectivity in WSL by running the following command in the WSL terminal:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         ping google.com
+
+   Example of expected response:
+    You should see a response similar to the following if network connectivity is available:
+
+    .. image:: /_static/documenting/check-network-wsl.png
+
+   If the network is not available, run the following commands on the host machine and then restart the host:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         wsl --shutdown
+         netsh winsock reset
+         netsh int ip reset all
+         netsh winhttp reset proxy
+         ipconfig /flushdns
+
+   .. only:: internal
+
+      .. admonition:: For Ansys Internal testing:
+         :class: attention
+
+         On the Windows host machine, the ``PYANSYS_PRIVATE_PYPI_PAT`` environment variable must be set as described `here <https://dev-docs.solutions.ansys.com/solution_journey/journey_prepare/connect_to_private_pypi.html>`__. Note that this will not be needed for the production version of the platform.
+
+#. Check the ``hosts`` file entries.
+
+   .. note::
+
+     On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+   a. Ensure that the ``hosts`` file contains the correct mapping of the WSL Native IP address (``WSL_MACHINE_IP`` in the ``.env`` file) with platform services.
+
+      Example of correct mapping:
+       .. tabs::
+
+        .. code-tab:: none
+          :caption: hosts
+
+          <wsl_native_ip> keycloak.<hostname>.<domain_name>
+          <wsl_native_ip> traefik.<hostname>.<domain_name>
+          <wsl_native_ip> oauth.<hostname>.<domain_name>
+          <wsl_native_ip> portal.<hostname>.<domain_name>
+
+       .. tip::
+
+         To fetch the ``<wsl_native_ip>`` value, run this command in the WSL terminal:
+
+         .. tabs::
+
+           .. code-tab:: bash
+             :caption: WSL
+
+              ip addr show eth0
+
+   b. Ensure that there are no duplicate entries with different IP addresses in the ``hosts`` file for the platform services.
+
+      Example of incorrect duplicate entries:
+       .. tabs::
+
+        .. code-tab:: none
+          :caption: hosts
+
+          <wsl_native_ip> portal.<hostname>.<domain_name>
+          <some_other_ip> portal.<hostname>.<domain_name>
+
+User cannot log in to portal or receives an error when accessing portal UI
+===========================================================================
+In this case, the user can access the Ansys App Portal™, but either cannot log in or receives an error when attempting to access the UI.
+
+To resolve this issue:
+
+#. Check the user registration details in the Keycloak Admin Console.
+
+#. Search for the user with the correct name (as specified in the :ref:`user registration form <register-new-user>`).
+
+#. In the user details, verify that the user is registered with the correct email domain name (as specified in the .env file).
+
+   .. note::
+    The email address for the user must have the email domain specified while deploying the platform. Once platform is deployed, in the ``.env`` file, the email domain is specified as ``OP_EMAIL_DOMAIN``.
+
+   Example of invalid email domain:
+    In this example, the user **test1** is registered with a domain of `@test.com`. This is invalid because the platform was launched with a domain of `@example.com`.
+
+    .. image:: /_static/documenting/invalid-user-list.png
+     :align: center
+
+For more information, see :ref:`keycloak`.
+
+Error occurs while starting platform services
+==============================================
+To resolve this issue:
+
+#. Check WSL network connectivity.
+
+   .. tabs::
+
+     .. code-tab:: bash
+       :caption: WSL
+
+       ping -c 4 google.com
+
+#. If WSL network connectivity is not available, run these commands on the host machine and then restart the host:
+
+   .. tabs::
+
+     .. code-tab::
+       :caption: PowerShell
+
+       netsh winsock reset
+       netsh int ip reset all
+       netsh winhttp reset proxy
+       ipconfig /flushdns
+
+
+Projects of an app deployed on the portal are not accessible
+=============================================================
+To resolve this issue:
+
+#. Check for the app service entry in the ``hosts`` file of the host machine.
+
+   .. tip::
+
+     On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+
+#. Ensure that the ``hosts`` file contains the correct mapping of the WSL native IP address with the app service.
+
+   Example of correct mapping:
+    .. code-block:: none
+      :caption: hosts
+
+       <wsl_native_ip> solutions.<hostname>.<domain_name>
+
+    .. tip::
+
+      To fetch the ``<wsl_native_ip>`` value, run this command in the WSL terminal:
+
+      .. tabs::
+
+        .. code-tab:: bash
+          :caption: WSL
+
+          ip addr show eth0
+
+#. Ensure that there are no duplicate entries with different IP addresses in the ``hosts`` file for the app service.
+
+   Example of incorrect duplicate entries:
+    .. code-block:: none
+      :caption: hosts
+
+      <wsl_native_ip> solutions.<hostname>.<domain_name>
+      <some_other_ip> solutions.<hostname>.<domain_name>
+
+
+Cannot start optiSLang
+======================
+When starting optiSlang, the following error message is shown:
+
+``Cannot start optiSLang 242. Please contact your IT admin to make sure that optiSLang is reachable and try again.``
+
+The error is likely caused by the host machine being unable to reach the WSL Linux distribution files system.
+
+One way to verify this is to open the WSL file system from Windows Explorer. If you get an error like the one shown here, it confirms that the host machine is not able to reach the WSL file system.
+
+.. image:: /_static/documenting/error_accessing_linux_file_system.png
+  :width: 75%
+
+To resolve this issue:
+
+#. Restart WSL by running this script:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+            wsl --shutdown
+            wsl
+
+#. Restart the platform as described in :ref:`start-platform`.
+
+
+Connection to the site is not secure
+=====================================
+When accessing the platform services, you receive a warning message that the connection to the site is not secure.
+
+To resolve this issue, click :guilabel:`Continue to site`.
+
+.. image:: /_static/documenting/continue-site.png
+    :width: 50%
+
+Cannot connect to the Product Instance Manager. Please contact your IT admin to make sure that this component is reachable
+===========================================================================================================================
+
+When you execute the optiSLang workflow, the following error message is shown:
+
+Cannot connect to the Product Instance Manager
+ .. image:: /_static/documenting/pim_connection_error.png
+   :width: 30%
+
+To resolve this issue:
+
+#. Go to the root directory of the platform where you extracted the Ansys App Portal and One Node Deployment Templates™ platform.
+
+#. Go to the ``deployment_scripts`` directory.
+
+#. Run the following command in PowerShell:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         .\Stop-Platform.ps1
+
+#. Run the following command in PowerShell:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         .\Start-Platform.ps1
+
+If issue persists, check the following:
+
+#. Restart the host machine where the platform is deployed. Once the host machine is restarted, run the following commands in PowerShell:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         .\deployment_scripts\Stop-Platform.ps1
+         .\deployment_scripts\Start-Platform.ps1
+
+If the issue still persists, check the following:
+
+#. Ensure that the port specified in the ``.env`` file for the Product Instance Manager is not being used by another service.
+#. If port is in use, try to free the port by using the following command in PowerShell:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         netstat -ano | findstr :<port>
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         taskkill /pid <PID> /F
+
+#. If the port is in use by system services and cannot be freed, you can change the port in the ``.env`` file and then restart the platform services.
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         .\deployment_scripts\Stop-Platform.ps1
+         .\deployment_scripts\Start-Platform.ps1
+
+
+Cannot execute the ``Deploy-Platform.ps1`` script
+=================================================
+
+When executing the ``Deploy-Platform.ps1`` script, you get the following error messages:
+
+Script is not digitally signed:
+ .. image:: /_static/documenting/signed_error.png
+    :align: center
+
+To resolve this issue:
+
+#. Locate Ansys_App_Portal_and_One_Node_Deployment_Templates-{{ version }}.zip
+
+#. Right-click the zip file and select **Properties**.
+
+#. Unblock the file, click :guilabel:`Apply` and then click :guilabel:`OK`.
+
+#. Unzip the Ansys_App_Portal_and_One_Node_Deployment_Templates-{{ version }}.zip.
+
+#. Continue the steps as  defined in :ref:`Deploy and start the platform <deploy>`.
+
+Corrupt virtual environment
+---------------------------
+
+If you receive the following messages, it means that your virtual environment is corrupt.
+
+Access is denied to the virtual environment activation script:
+ .. image:: /_static/documenting/access-denied-to-venv-activation-script.png
+   :align: center
+
+
+Access is denied to the virtual environment files:
+ .. image:: /_static/documenting/access-denied-to-venv-files.png
+   :align: center
+
+To resolve these issues:
+
+#. Close all running terminals where the platform script was launched.
+
+#. Navigate to the root directory of the platform and manually delete the ``.venv`` directory.
+
+#. Continue the steps described in :ref:`deploy`.
+
+
+Cannot execute the ``Start-Platform.ps1`` script after operating system is restarted
+====================================================================================
+
+If you receive the following error message when executing the ``Start-Platform.ps1`` script after restarting the operating system:
+
+**<port> is in use, please release it and try starting the platform again.**
+
+.. image:: /_static/documenting/os_restart_port_busy.png
+   :align: center
+
+To resolve this issue:
+
+#. Execute the ``Stop-Platform.ps1`` script to stop the platform services and then re-execute the ``Start-Platform.ps1`` script.
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         .\deployment_scripts\Stop-Platform.ps1
+         .\deployment_scripts\Start-Platform.ps1
+
+#. If the issue persists, you need to identify and terminate the process that is using the port. Follow below steps to identify and terminate the process:
+
+#. Identify the process that is using the port by running the following command in PowerShell:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         netstat -ano | findstr :<port>
+
+#. Note the PID of the process that is using the port.
+#. Terminate the process by running the following command in PowerShell:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: PowerShell
+
+         taskkill /pid <PID> /F
+
+#. Execute the ``Start-Platform.ps1`` script again.
+
+
+Gathering Service-Specific Logs
+################################
+
+To troubleshoot issues with specific services defined in the `docker-compose.yaml` file, you can gather logs for each service using the following steps.
+
+
+#. Before you begin, navigate to the root of directory where you extracted the platform. This is where the `docker-compose.yaml` file is located.
+   Open a terminal in the wsl environment. You can do this by running the following command in the WSL terminal:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         cd /path/to/your/platform/root/directory
+
+#. Ensure Docker is running and the services are up.
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         docker compose ps
+
+#. Identify the container names for the services you want to gather logs for. These names can be found in the `docker-compose.yaml` file or by running:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         docker compose ps
+
+#. Use the following command to gather logs for a specific service:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         docker logs <container_name>
+
+   Replace `<container_name>` with the name of the container corresponding to the service.
+
+#. To gather logs for all services defined in the `docker-compose.yaml` file, you can use the following command:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         docker compose logs
+
+#. If you need to filter logs for a specific service, use:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         docker compose logs <service_name>
+
+   Replace `<service_name>` with the name of the service as defined in the `docker-compose.yaml` file.
+
+#. Save the logs to a file for further analysis:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         docker compose logs > service_logs.txt
+
+   This will save all service logs to `service_logs.txt`.
+
+#. For detailed logs, you can use the `--tail` option to specify the number of lines or `--timestamps` to include timestamps:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         docker compose logs --tail 100 --timestamps

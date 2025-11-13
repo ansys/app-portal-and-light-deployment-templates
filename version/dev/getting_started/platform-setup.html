@@ -1,0 +1,878 @@
+ <!-- ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited. -->
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>(2) Deploy the platform &#8212; Ansys App Portal and One Node Deployment Templates</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=d2ac875c" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../_static/documentation_options.js?v=8a448e45"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/platform-setup';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://external.light.deployments.docs.solution.ansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User guide" href="../user_guide/index.html" />
+    <link rel="prev" title="(1) Verify prerequisites" href="pre-req.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://external.light.deployments.docs.solution.ansys.com/version/stable/getting_started/platform-setup.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MeiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+   
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/solutions_logo_light.png" class="logo__image only-light" alt="Ansys App Portal and One Node Deployment Templates - Home"/>
+    <script>document.write(`<img src="../_static/solutions_logo_dark.png" class="logo__image only-dark" alt="Ansys App Portal and One Node Deployment Templates - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_doc/index.html">
+    Release documentation
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../release_doc/index.html">
+    Release documentation
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Platform overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pre-req.html">(1) Verify prerequisites</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">(2) Deploy the platform</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+     
+    <li class="breadcrumb-item breadcrumb-home">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Getting started</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">(2) Deploy the platform</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="deploy-the-platform">
+<span id="platform-setup"></span><h1>(2) Deploy the platform<a class="headerlink" href="#deploy-the-platform" title="Link to this heading">#</a></h1>
+<p>Download and then deploy and start the Ansys App Portal and One Node Deployment Templates™ platform.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>By deploying the platform, you acknowledge and agree that you are installing certain third-party products and/or open-source software (collectively, “third-party software”). Such third-party software is subject to separate terms and conditions separate from the terms of your Ansys software license agreement. Ansys does not warrant or support use of such third-party software separately from the Ansys products.</p>
+</div>
+<section id="download-the-package">
+<h2>Download the package<a class="headerlink" href="#download-the-package" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>Download the <strong>Ansys App Portal and One Node Deployment Templates (Windows)</strong> package from the <a class="reference external" href="https://download.ansys.com/Platform%20Components">Ansys Customer Portal</a>.</p></li>
+<li><p>Locate <code class="docutils literal notranslate"><span class="pre">Ansys_App_Portal_and_One_Node_Deployment_Templates-0.4.dev1.zip</span></code>.</p></li>
+<li><p>Unzip <code class="docutils literal notranslate"><span class="pre">Ansys_App_Portal_and_One_Node_Deployment_Templates-0.4.dev1.zip</span></code>.</p></li>
+<li><p>Proceed based on the following:</p>
+<ul>
+<li><p><strong>If you already have deployed the 0.3.1 version</strong> of the platform, you can migrate the data to the new one. Follow the instructions in the <a class="reference internal" href="#migrate"><span class="std std-ref">Migrate from the previous version</span></a> section to run the migration script.</p></li>
+<li><p><strong>If you do not want to migrate the data from the previous version</strong>, you can skip the migration step. Follow the instructions in the <a class="reference internal" href="#deploy"><span class="std std-ref">Clean deploy the new version of the platform</span></a> section to run the deployment script directly.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="migrate-from-the-previous-version">
+<span id="migrate"></span><h2>Migrate from the previous version<a class="headerlink" href="#migrate-from-the-previous-version" title="Link to this heading">#</a></h2>
+<p>When you run the migration script, it also automatically deploys the new version of the platform. You do not need to run the deployment script separately after migration.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The migration script is only available in the Ansys App Portal and One Node Deployment Templates™ 0.4.0 version and later.
+In the process of migration, all settings and configurations from the previous version of the platform are preserved, including the ports, email domain, firewall rules and solutions directory path. Currently, it is not possible to change the email domain, ports, or solutions directory path during the migration process.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The migration process runs even if the previous version of the platform is running, but we recommend stopping the previous version before running the migration script.</p>
+<p>As part of the migration from version 0.3.1 to 0.4.dev1, the new Ansys App Portal user experience introduces changes in access control. After this upgrade, normal users will no longer have automatic visibility of their previously created applications and projects.</p>
+<p>To ensure continued access, portal administrators should review and assign the necessary access rights to normal users.
+For more information on how to manage user access to applications in the Ansys App Portal, see the <a class="reference internal" href="../user_guide/test/add_remove_app_access.html#add-remove-app-access"><span class="std std-ref">Add or remove app access</span></a> section.</p>
+</div>
+<ol class="arabic">
+<li><p>Stop the previous version of the platform, if it is running.</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">.</span>\<span class="o">&lt;</span><span class="n">directory</span><span class="o">-</span><span class="n">where</span><span class="o">-</span><span class="n">previous</span><span class="o">-</span><span class="n">platform</span><span class="o">-</span><span class="ow">is</span><span class="o">-</span><span class="n">extracted</span><span class="o">&gt;</span>\<span class="n">deployment_scripts</span>
+</pre></div>
+</div>
+</div></div><div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">Stop</span><span class="o">-</span><span class="n">Platform</span><span class="o">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Go to the directory where the new version of the platform is extracted—in this case, <code class="docutils literal notranslate"><span class="pre">Ansys_App_Portal_and_One_Node_Deployment_Templates-0.4.dev1</span></code>.</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">.</span>\<span class="n">Ansys_App_Portal_and_One_Node_Deployment_Templates</span><span class="o">-</span><span class="mf">0.4</span><span class="o">.</span><span class="n">dev1</span>
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Run a Windows PowerShell terminal <strong>as administrator</strong> and go to the <code class="docutils literal notranslate"><span class="pre">deployment_scripts</span></code> directory.</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">.</span>\<span class="n">Ansys_App_Portal_and_One_Node_Deployment_Templates</span><span class="o">-</span><span class="mf">0.4</span><span class="o">.</span><span class="n">dev1</span>\<span class="n">deployment_scripts</span>
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Execute the migration script.</p>
+<p>During the process, it prompts you to enter the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file path that contains the settings for the old version of the platform.</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">Migrate</span><span class="o">-</span><span class="n">Platform</span><span class="o">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+</div></div><a class="reference internal image-reference" href="../_images/migration-start.png"><img alt="../_images/migration-start.png" class="align-left" src="../_images/migration-start.png" style="width: 100%;" />
+</a>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The old platform database and volumes are exported to the <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;user_name&gt;\AppData\Roaming\Ansys_solutions_export_data\</span></code> directory.
+The migration script also creates the logs in the <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;user_name&gt;\AppData\Roaming\Ansys_solutions_platform_logs\</span></code> directory.</p>
+</div>
+</section>
+<section id="clean-deploy-the-new-version-of-the-platform">
+<span id="deploy"></span><h2>Clean deploy the new version of the platform<a class="headerlink" href="#clean-deploy-the-new-version-of-the-platform" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The platform requires SSL certificates to ensure secure communication between its components.
+These certificates are auto generated during the deployment process unless you choose to provide your own custom certificates.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This is the process of deploying the new version of the Ansys App Portal and One Node Deployment Templates™ platform from scratch, without migrating any data from the previous version.
+Do not run this process if you have already migrated the data from the previous version of the platform.</p>
+</div>
+<ol class="arabic">
+<li><p>If the previous version of the platform is installed, uninstall it. The deployment script will not work if the previous version is still installed.</p>
+<p>To uninstall the previous version, go to the directory where the previous version is installed.
+Open the Windows PowerShell terminal <strong>as administrator</strong> and then run the commands in the following section to fully uninstall the platform.</p>
+<p>For instructions, see <a class="reference internal" href="../user_guide/uninstalling.html#uninstalling-platform"><span class="std std-ref">Uninstall the platform</span></a>.</p>
+</li>
+<li><p>Run a Windows PowerShell terminal <strong>as administrator</strong> and go to the <code class="docutils literal notranslate"><span class="pre">deployment_scripts</span></code> directory.</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">.</span>\<span class="n">Ansys_App_Portal_and_One_Node_Deployment_Templates</span><span class="o">-</span><span class="mf">0.4</span><span class="o">.</span><span class="n">dev1</span>\<span class="n">deployment_scripts</span>
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Execute the deployment script.</p>
+<p>It checks all prerequisites and notifies you about failures, with the corresponding corrections. During the process, it prompts you to enter some required inputs for the platform setup (for an explanation about those inputs, see the section follows).</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">Deploy</span><span class="o">-</span><span class="n">Platform</span><span class="o">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+</div></div></li>
+<li><p>During the deployment, you will be asked to specify different settings (if in doubt, you can leave the default values):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 52.6%" />
+<col style="width: 21.1%" />
+<col style="width: 26.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>Configuration</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>Linux Distribution</p></th>
+<td><p>Specify the Linux distribution to be used by the platform.</p></td>
+<td><p>The first listed distribution.</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Solutions directory path</p></th>
+<td><p>Specify the path where the <code class="docutils literal notranslate"><span class="pre">.awa</span></code> solution files are extracted to locally.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;user_name&gt;\AppData\Roaming\Ansys\solutions</span></code></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Email domain</p></th>
+<td><p>Update this to your relevant company’s domain, as only users with email addresses from
+this domain can register on the Ansys App Portal.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">example.com</span></code></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Port to connect to the platform</p></th>
+<td><p>Specify the port the platform will be accessible through at <code class="docutils literal notranslate"><span class="pre">http://portal.&lt;hostname&gt;.&lt;domain_name&gt;:&lt;tr_port&gt;</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TR_PORT=8080</span></code></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Port to connect to Keycloak (identity provider)</p></th>
+<td><p>Specify the port Keycloak will be accessible through at <code class="docutils literal notranslate"><span class="pre">http://keycloak.&lt;hostname&gt;.&lt;domain_name&gt;:&lt;kc_port&gt;/auth</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">KC_PORT=8011</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>After configuring the platform, you will be prompted to start up the platform.</p>
+<ul>
+<li><p>If you select <strong>Yes</strong> (or <strong>y</strong>), the platform will automatically generate self-signed SSL certificates and place them in the <code class="docutils literal notranslate"><span class="pre">ca_keys</span></code>, <code class="docutils literal notranslate"><span class="pre">server_certs</span></code>, and <code class="docutils literal notranslate"><span class="pre">client_certs</span></code> directories at the root of the platform package.</p></li>
+<li><p>If you prefer to use custom certificates, select <strong>No</strong> (or <strong>n</strong>) when prompted to start the platform and then follow the instructions in <a class="reference internal" href="#manual-certificate-generation"><span class="std std-ref">Manual certificate generation with OpenSSL</span></a>.</p></li>
+</ul>
+</li>
+<li><p>Once the platform is deployed, the URL to access it is displayed in the terminal. You can access the platform by opening a web browser and entering the URL.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Deploy-Platform.ps1</span></code> deployment script performs the following operations automatically:</p>
+<ul>
+<li><p>Logs any errors or warnings in a log file located at <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;user_name&gt;\AppData\Roaming\Ansys_solutions_platform_logs</span></code>.</p></li>
+<li><p>Sets an inbound rule to open the following port ranges in the Windows firewall. These ports are used by the platform services.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p>Port</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">PIM_PORT</span></code></p></th>
+<td><p>Port used by the instance management system. Default to <code class="docutils literal notranslate"><span class="pre">8443</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">3000-9000</span></code></p></th>
+<td><p>Port range where optiSLang instances are launched.</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">30000-65000</span></code></p></th>
+<td><p>Port range where a service for communicating with optiSLang is launched.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section id="manual-certificate-generation-with-openssl">
+<span id="manual-certificate-generation"></span><h2>Manual certificate generation with OpenSSL<a class="headerlink" href="#manual-certificate-generation-with-openssl" title="Link to this heading">#</a></h2>
+<section id="installing-openssl-in-windows">
+<h3>Installing OpenSSL in Windows<a class="headerlink" href="#installing-openssl-in-windows" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Download the OpenSSL installer for Windows from the official website: <a class="reference external" href="https://slproweb.com/products/Win32OpenSSL.html">https://slproweb.com/products/Win32OpenSSL.html</a>.</p></li>
+<li><p>Run the installer and follow the installation prompts.</p></li>
+<li><p>During installation, select the option to copy OpenSSL binaries to the Windows system directory.</p></li>
+<li><p>After installation, add the OpenSSL binary directory (for example, <code class="docutils literal notranslate"><span class="pre">C:\\Program</span> <span class="pre">Files\\OpenSSL-Win64\\bin</span></code>) to your system’s <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> environment variable.</p></li>
+<li><p>Verify the installation by opening a new Command Prompt and running:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">version</span>
+</pre></div>
+</div>
+</div></div></li>
+</ol>
+</section>
+<section id="certificate-generation">
+<h3>Certificate Generation<a class="headerlink" href="#certificate-generation" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before running the following commands, ensure you replace all placeholder values with the actual values relevant to your environment.</p>
+<ul>
+<li><p>Replace <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">&lt;GATEWAY_IP&gt;</span></code> with the actual IP address of your gateway. You can find this value in the <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">GATEWAY_IP</span></code> variable within the <code class="docutils literal notranslate"><span class="pre">.env</span></code> file of the platform package.</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;Provide</span> <span class="pre">the</span> <span class="pre">subject</span> <span class="pre">here&gt;</span></code> with an appropriate subject for your certificates (for example, your organization name or domain).</p></li>
+</ul>
+</div>
+<p>Create a directory with name <code class="docutils literal notranslate"><span class="pre">ssl_certificates</span></code> outside of platform package directory and perform the following steps.</p>
+<ol class="arabic">
+<li><dl>
+<dt>Generate a CA key and certificate (used to sign server and client certs):</dt><dd><div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">genrsa</span> <span class="o">-</span><span class="n">out</span> <span class="n">ca</span><span class="o">.</span><span class="n">key</span> <span class="mi">4096</span>
+<span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">new</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">key</span> <span class="n">ca</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">sha256</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span> <span class="o">-</span><span class="n">out</span> <span class="n">ca</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">subj</span> <span class="s2">&quot;/CN=&lt;Provide the subject here&gt;&quot;</span>
+</pre></div>
+</div>
+</div></div></dd>
+</dl>
+</li>
+<li><dl>
+<dt>Generate a server key and Certificate Signing Request (CSR):</dt><dd><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">openssl genrsa -out server.key 4096</span>
+<span class="go">openssl req -new -key server.key -out server.csr -subj &quot;/CN=&lt;GATEWAY_IP&gt;&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<ul>
+<li><dl>
+<dt>(Recommended) Add key usage and extended key usage extensions to the server certificate:</dt><dd><ol class="loweralpha">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">server_ext.cnf</span></code> with the following content:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[ v3_req ]</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature, keyEncipherment</span>
+<span class="na">extendedKeyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">serverAuth</span>
+<span class="na">subjectAltName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@alt_names</span>
+
+<span class="k">[ alt_names ]</span>
+<span class="na">DNS.1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;GATEWAY_IP&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then sign the server CSR with the CA and include the extensions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365 -sha256 -extfile server_ext.cnf -extensions v3_req</span>
+</pre></div>
+</div>
+<p>You now have <code class="docutils literal notranslate"><span class="pre">server.crt</span></code>, <code class="docutils literal notranslate"><span class="pre">server.key</span></code>, and <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> in your directory.</p>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><dl>
+<dt>Generate a client certificate for mutual TLS:</dt><dd><p>To enable mTLS (where the server verifies the client), you also need a client certificate and key signed by the same CA:</p>
+<ul>
+<li><dl>
+<dt>Generate a client key and CSR:</dt><dd><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">openssl genrsa -out client.key 4096</span>
+<span class="go">openssl req -new -key client.key -out client.csr -subj &quot;/CN=&lt;Provide the subject here&gt;&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p>(Recommended) Add key usage and extended key usage extensions to the client certificate:</p>
+<ol class="loweralpha">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">client_ext.cnf</span></code> with the following content:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[ v3_req ]</span>
+<span class="na">keyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">critical, digitalSignature, keyEncipherment</span>
+<span class="na">extendedKeyUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">clientAuth</span>
+<span class="na">subjectAltName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">@alt_names</span>
+
+<span class="k">[ alt_names ]</span>
+<span class="na">DNS.1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;GATEWAY_IP&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then sign the client CSR with the CA and include the extensions:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 365 -sha256 -extfile client_ext.cnf -extensions v3_req</span>
+</pre></div>
+</div>
+<p>You now have <code class="docutils literal notranslate"><span class="pre">client.crt</span></code> and <code class="docutils literal notranslate"><span class="pre">client.key</span></code> in your directory. The client should also trust <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> as the CA certificate.</p>
+</li>
+</ol>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Copy the generated certificates into the extracted package directory:</dt><dd><p>Be sure to maintain the following folder structure at the package root.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Ansys_App_Portal_and_One_Node_Deployment_Templates-0.4.dev1/
+├─ ca_keys
+│  ├─ ca.crt
+│  └─ ca.key
+├─ client_certs
+│  ├─ ca.crt
+│  ├─ client.crt
+│  └─ client.key
+└─ server_certs
+   ├─ ca.crt
+   ├─ server.crt
+   └─ server.key
+</pre></div>
+</div>
+<p>Verify that each certificate and key is placed in its respective folder as shown in the preceding example.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Start the platform:</dt><dd><ol class="loweralpha">
+<li><p>Go to the <code class="docutils literal notranslate"><span class="pre">deployment_scripts</span></code> directory:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd </span><span class="p">.\</span><span class="n">Ansys_App_Portal_and_One_Node_Deployment_Templates</span><span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">dev1</span><span class="p">\</span><span class="n">deployment_scripts</span>
+</pre></div>
+</div>
+</div></div></li>
+<li><p>Run the following command to start the platform:</p>
+<div class="tabs docutils container" data-tabgroup="">
+<ul class="tabbar">
+<li class="tabbutton selected" data-id="0" onclick="sphinx_code_tabs_onclick(this)">
+PowerShell</li></ul><div class="tab codetab selected" data-id="0">
+<div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="p">.\</span><span class="nb">Start-Platform</span><span class="p">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+</div></div></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-package">Download the package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migrate-from-the-previous-version">Migrate from the previous version</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-deploy-the-new-version-of-the-platform">Clean deploy the new version of the platform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-certificate-generation-with-openssl">Manual certificate generation with OpenSSL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-openssl-in-windows">Installing OpenSSL in Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#certificate-generation">Certificate Generation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <center>
+        <hr>
+        <p class="footer">Release 0.4.dev1 &mdash; ©2024, ANSYS, Inc. All rights reserved. <br>Contains proprietary and confidential information of ANSYS, Inc. and its subsidiaries and affiliates.<br>Unauthorized use, distribution, or duplication is
+            prohibited.</p>
+    </center>
+
+  </body>
+</html>

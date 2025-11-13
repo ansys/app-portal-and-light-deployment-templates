@@ -1,0 +1,31 @@
+.. _known_limitations:
+
+Known limitations
+=================
+
+This section lists the known limitations for the Ansys App Portal and Deployment Templates platform.
+
+Operating System Support:
+ The Ansys App Portal and Deployment Templates platform works only on Windows 10, Windows 11, and Windows Server 2022 with WSL Ubuntu-20.04 distribution.
+
+Port range variability for optiSLang server:
+ The range of ports where the optiSLang wrapper server usually runs is within the **30000-65000** range. However, this range can vary from system to system, so it may be necessary to adjust the firewall settings accordingly.
+
+Unable to delete edited apps:
+ Editing the name and version of an app before deleting it is not recommended. Because the new name and version values do not match the values with which the app was added, the deletion fails. Deletion of an app is only possible with its original name and version.
+
+Platform specific limitations:
+    * If **Ansys optiSLang® 2024 R2 SP2** is installed through upgrading existing installation of **Ansys optiSLang® 2024 R2**, then the platform will work only with the **Ansys optiSLang® 2024 R2 SP2**.
+    * Currently platform is compatible with deployment of apps that are either created from **Ansys optiSLang® 2024 R2** or **Ansys optiSLang® 2024 R2 SP2**.
+    * Apps created from **Ansys optiSLang® 2024 R2** and **Ansys optiSLang® 2024 R2 SP2** cannot be deployed together.
+    * Apps deployed in an earlier versions of the Platform cannot be migrated to newer versions of Platform.
+
+Deployment scripts limitations:
+    * The deployment script ``Deploy-Platform.ps1`` is not designed to handle the deployment on a network virtual machine. For this configuration, manual steps are needed. 
+    * ``Start-Platform.ps1`` and ``Stop-Platform.ps1`` are designed to start/stop **all the platform services** at once.
+
+
+.. only:: internal
+
+    * Full list of bugs `here <https://github.com/ansys-internal/saf-light-one-node/issues?q=is%3Aissue+is%3Aopen+label%3Abug>`__.
+

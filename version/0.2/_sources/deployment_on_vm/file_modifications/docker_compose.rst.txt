@@ -1,0 +1,57 @@
+.. _docker_compose:
+
+Update the ``docker-compose.yaml`` file
+#########################################
+
+
+#. Open the ``docker-compose.yaml`` file at the root of the ``Ansys_App_Portal_and_Deployment_Template`` directory.
+
+#. Update the following labels:
+
+   a. In the ``oauth`` service under ``labels``, update ``traefik.http.routers.oauth.rule``:
+
+      .. code-block:: yaml
+         :caption: docker-compose.yaml
+
+         "traefik.http.routers.oauth.rule": "(HostRegexp(`{subdomains:.*}.${OP_BASE_DOMAIN}`) || Host(`${OP_BASE_DOMAIN}`)) && (PathPrefix(`/oauth2`) || PathPrefix(`/saf/portal/oauth2`) || PathPrefix(`/saf/portal/api/oauth2`))"
+
+   b. In the ``traefik`` service under ``labels``, update ``traefik.http.routers.dashboard.rule``:
+
+      .. code-block:: yaml
+         :caption: docker-compose.yaml
+
+         "traefik.http.routers.dashboard.rule": "Host(`TR_HOST_URL`)"
+
+#. In a WSL terminal, fetch the value of ``docker IP``:
+
+   .. tabs::
+
+      .. code-tab:: bash
+         :caption: WSL
+
+         ip addr show docker0
+
+#. In ``docker-compose.yaml``, add an ``extra_hosts`` section with the value of ``docker IP`` to the following services:
+
+   a. Add ``extra_hosts`` to the ``oauth`` service:
+
+      .. code-block:: yaml
+         :caption: docker-compose.yaml
+
+                extra_hosts:
+                  - ${KC_DOMAIN}=<docker IP>
+
+   b. Add ``extra_hosts`` to the ``server`` service:
+
+
+      .. code-block:: yaml
+         :caption: docker-compose.yaml
+
+                extra_hosts:
+                  - ${KC_DOMAIN}=<docker IP>
+
+   Once added, the new ``extra_hosts`` sections should look like this:
+
+   .. image:: /_static/documenting/extra_hosts.png
+      :width: 40%
+

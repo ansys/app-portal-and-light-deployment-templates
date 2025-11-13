@@ -1,0 +1,35 @@
+.. _vm-hosts-file-mods:
+
+Update the hosts file
+#####################
+
+In order to make the virtual machine (VM) instance accessible on the virtual network, you need to update and verify the entries in the ``hosts`` file on the VM, both for the platform as a whole and for each solution app deployed to the Ansys App Portal.
+
+Follow these instructions to update and verify the necessary changes to the ``hosts`` file.
+
+.. grid:: 1
+   :gutter: 4
+
+   .. grid-item-card:: Update hosts entries for the platform
+      :link-type: doc
+      :link: vm_hosts_platform
+
+      When you first deploy the platform on a VM, update and verify ``hosts`` file entries to make the platform accessible over the virtual network.
+
+   .. grid-item-card:: Verify hosts entries for a deployed app
+      :link-type: doc
+      :link: vm_hosts_new_solution
+
+      When you deploy a new solution app to the Ansys App Portal on a VM, verify the automatically updated ``hosts`` file entries that make the deployed app accessible over the virtual network.
+
+
+.. tip::
+
+    On Windows operating systems, the ``hosts`` file is located at ``C:\\Windows\\System32\\drivers\\etc\\hosts``.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   vm_hosts_platform
+   vm_hosts_new_solution

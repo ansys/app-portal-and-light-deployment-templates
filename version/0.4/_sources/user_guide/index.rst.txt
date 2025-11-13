@@ -1,0 +1,56 @@
+.. _ref_user_guide_index:
+
+User guide
+###########
+
+This section provides instructions for testing, troubleshooting, and working with the Ansys App Portal and One Node Deployment Templates™ platform once you've deployed it.
+
+.. important::
+
+   Before using the platform, make sure that you have fulfilled all :ref:`prerequisites<prerequisites>` and completed all the steps in the :ref:`platform_setup` section.
+
+.. grid::  1
+   :gutter: 4
+
+   .. grid-item-card:: :ref:`access-platform`
+       :link-type: doc
+       :link: access
+
+       Access the deployed platform.
+
+   .. grid-item-card:: :ref:`use-platform`
+       :link-type: doc
+       :link: test/index
+
+       Use the the capabilities of the deployed platform.
+
+   .. grid-item-card:: :ref:`stop-start-platform`
+      :link-type: doc
+      :link: stop_start_services
+
+      Stop and start platform services after it has already been deployed once.
+
+   .. grid-item-card:: :ref:`troubleshooting`
+      :link-type: doc
+      :link: troubleshooting
+
+      Get guidance resolving common issues you may encounter while using the platform.
+
+
+   .. grid-item-card:: :ref:`uninstalling_platform`
+      :link-type: doc
+      :link: uninstalling
+
+      Learn how to uninstall the platform.
+
+
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   access
+   test/index
+   stop_start_services
+   troubleshooting
+   uninstalling

@@ -1,0 +1,53 @@
+.. _keycloak-manage-admin:
+
+Change the Keycloak administrative password
+############################################
+
+To change the administrative password, follow these steps:
+
+#. Open the Keycloak Admin Console at the following URL:
+
+   .. code::
+
+    http://keycloak.<hostname>.<domain_name>:<kc_port>/auth/
+
+#. On the Keycloak Admin Console welcome page, click **Administration console**.
+
+#. On the Keycloak **Log in** dialog, log in with Keycloak administrator credentials (``admin``/ ``admin`` by default).
+
+#. In the left panel, select the **master** realm.
+
+   .. image:: /_static/documenting/master_realm.png
+
+#. In the left panel, click **Users** to open the **Users** page.
+
+   .. image:: /_static/documenting/users_page.png
+
+#. In the **User list**, click the **admin** username to open the **User details** page.
+
+   .. image:: /_static/documenting/user_details_page.png
+
+#. On the **User details** page, click the **Credentials** tab.
+
+   .. image:: /_static/documenting/user_credentials.png
+
+#. Click :guilabel:`Reset password`.
+
+#. On the **Reset Password for admin** dialog, enter the new password in the **New Password** and **New password confirmation** fields.
+
+   .. image:: /_static/documenting/reset_password.png
+
+#. Turn off the **Temporary** switch.
+
+#. Click :guilabel:`Save`.
+
+#. On the **Reset password?** dialog, click :guilabel:`Reset password`.
+
+   .. image:: /_static/documenting/reset_dialog.png
+
+   A confirmation message indicates that the password was reset successfully.
+
+   .. image:: /_static/documenting/reset_success.png
+
+#. Log out and then log back in with the new password.
+

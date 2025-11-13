@@ -1,0 +1,25 @@
+.. _changelog:
+
+Release notes
+##############
+
+
+
+What's new in |version|?
+========================
+
+Ansys App Portal and One Node Deployment Templates™ |version| is a feature release that includes the following enhancements:
+
+.. only:: internal
+
+   Release notes :  https://github.com/ansys-internal/saf-light-one-node/releases/tag/v0.4.dev0
+
+New features and enhancements:
+ * Support for Ansys optiSLang® 2025 R2.
+ * New Ansys App Portal with enhanced user interface and user experience.
+ * New Ansys App Portal with application access management.
+ * Migration of data from 0.3.1 version of the platform to |version| version.
+
+Service pack updates:
+ * This release contains service pack updates.
+ 

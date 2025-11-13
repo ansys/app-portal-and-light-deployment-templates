@@ -1,0 +1,24 @@
+.. _changelog:
+
+Release notes
+##############
+
+
+
+What's new in |version|?
+========================
+
+Ansys App Portal and Light Deployment Templates™ |version| is a feature release that includes the following enhancements:
+
+.. only:: internal
+
+   Release Notes :  https://github.com/ansys-internal/saf-light-one-node/releases/tag/v0.4.dev0
+
+Using Ansys python interpreter
+ * There is no need to install Python separately. While starting the platform, it automatically uses Python interpreter included within the Ansys installation.
+   If the Python interpreter is not found within the Ansys installation, an alternative Python interpreter can be used.
+
+
+Bug Fixes
+ * Some users were facing error ``SSL: CERTIFICATE_VERIFY_FAILED`` during the deployment. This issue has been fixed in this release.
+ * Some users were facing error ``And error occurred during configuration: argument of type 'NoneType' is not iterable`` during the deployment. This issue has been fixed in this release. 

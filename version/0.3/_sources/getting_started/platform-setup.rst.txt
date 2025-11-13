@@ -1,0 +1,97 @@
+.. _platform_setup:
+
+(2) Deploy the platform
+#########################
+
+Download and then deploy and start the Ansys App Portal and Light Deployment Templates™ platform.
+
+.. note::
+
+  By deploying the platform, you acknowledge and agree that you are installing certain third-party products and/or open-source software (collectively, "third-party software"). Such third-party software is subject to separate terms and conditions separate from the terms of your Ansys software license agreement. Ansys does not warrant or support use of such third-party software separately from the Ansys products.
+
+
+Download the package
+=====================
+
+#. Download the `App Portal and Light Deployment Templates (Windows)` package from the `Ansys Customer Portal <https://download.ansys.com/Platform%20Components>`_.
+
+#. Locate ``Ansys_App_Portal_and_Light_Deployment_Templates.zip``
+
+#. Unzip the ``Ansys_App_Portal_and_Light_Deployment_Templates.zip``.
+
+
+.. _deploy:
+
+Deploy and start the platform
+=============================
+
+1. Run a Windows PowerShell terminal **as administrator** and go to the ``deployment_scripts`` directory.
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: PowerShell
+
+          cd .\Ansys_App_Portal_and_Light_Deployment_Templates\deployment_scripts
+
+2. Execute the deployment script.
+
+   It checks all prerequisites and notifies you about failures, with the corresponding corrections. During the process, it prompts you to enter some required inputs for the platform setup (for an explanation about those inputs, see the section follows).
+
+   .. tabs::
+
+       .. code-tab::
+          :caption: PowerShell
+
+          .\Deploy-Platform.ps1
+
+
+3. During the deployment, you will be asked to specify different settings (in case of doubt, you can leave the default values):
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+   :widths: 60 60 25
+
+   * - Configuration
+     - Description
+     - Default value
+   * - Linux Distribution
+     - Specify the Linux distribution to be used by the platform.
+     - The first listed distribution.
+   * - Solutions directory path
+     - Specify the path where the ``.awa`` solution files are extracted to locally.
+     - ``C:\Users\<user_name>\AppData\Roaming\Ansys\solutions``
+   * - Email domain
+     - Update this to your relevant company's domain, as only users with email addresses from
+       this domain can register on the Ansys App Portal.
+     - ``example.com``
+   * - Port to connect to the platform
+     - Specify the port the platform will be accessible through at ``http://portal.<hostname>.<domain_name>:<tr_port>``.
+     - ``TR_PORT=8080``
+   * - Port to connect to Keycloak (identity provider)
+     - Specify the port Keycloak will be accessible through at ``http://keycloak.<hostname>.<domain_name>:<kc_port>/auth``.
+     - ``KC_PORT=8011``
+
+4. Once the platform is deployed, the URL to access it is displayed in the terminal. You can access the platform by opening a web browser and entering the URL.
+
+.. note::
+
+   The ``Deploy-Platform.ps1`` deployment script performs the following operations automatically:
+
+   * Logs any errors or warnings in a log file located at ``C:\Users\<user_name>\AppData\Roaming\Ansys_solutions_platform_logs``.
+   * Sets an inbound rule to open the following port ranges in the Windows firewall. These ports are used by the platform services.
+
+     .. list-table::
+      :header-rows: 1
+      :stub-columns: 1
+      :widths: 15 85
+
+      * - Port
+        - Description
+      * - ``PIM_PORT``
+        - Port used by the instance management system. Default to ``8443``.
+      * - ``3000-9000``
+        - Port range where optiSLang instances are launched.
+      * - ``30000-65000``
+        - Port range where a service for communicating with optiSLang is launched.
